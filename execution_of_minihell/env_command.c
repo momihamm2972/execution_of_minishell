@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_excu.c                                        :+:      :+:    :+:   */
+/*   env_command.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/01 19:00:20 by momihamm         ###   ########.fr       */
+/*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
+/*   Updated: 2023/11/01 17:47:50 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_excu.h"
 
-int main(int ac, char **av, char **env)
+void    env_command(char **env)
 {
-    (void) ac;
-    (void) av;
-    (void) env;
-    // ag
-    // printf ("%s",av[1]);
-    // my_pdw();
-    // my_echo_n ("test");
-    env_command (list_env);
-    exp_command (list_exp);
+    int row;
+
+    row = 0;
+    while (env[row])
+        printf ("%s\n",env[row++]);
 }
