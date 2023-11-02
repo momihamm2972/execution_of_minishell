@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:39:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/10/31 12:41:41 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:46:20 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,16 @@ char	*ft_strdup(const char *s1)
 	ft_memcpy(str, s1, len);
 	return (str);
 }
+
+// char	*ft_strdup(const char *s1)
+// {
+// 	size_t	len;
+// 	char	*str;
+
+// 	len = ft_strlen(s1);
+// 	str = ft_calloc(len + 1, sizeof(char));
+// 	if (!str)
+// 		return (NULL);
+// 	ft_memcpy(str, s1, len);
+// 	return (str);
+// }
