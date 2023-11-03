@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:45:30 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/02 14:45:34 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:21:38 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ t_node	*ft_lstnew(char *env_val)
 	t_node	*head;
 
 	head = malloc (sizeof (t_node));
-	// head->data = content;
-	// head->key = ft_strdup ("");
-	// head->value_of_the_key = ft_strdup ("");
 	head->key = NULL;
 	head->value_of_the_key = NULL;
 	head->key = ft_frontcpy (head->key, env_val, '=');
@@ -59,10 +56,10 @@ t_node	*ft_lstlast(t_node **lst)
 	if ((*lst)->next == NULL)
 		return ((*lst));
 	ptr = (*lst);
-	while (ptr->next)
+	while (ptr)
 	{
-		if (ptr->next->next == NULL)
-			return (ptr->next);
+		if (ptr->next == NULL)
+			return (ptr);
 		ptr = ptr->next;
 	}
 	return (NULL);
@@ -71,8 +68,12 @@ t_node	*ft_lstlast(t_node **lst)
 void	ft_lstadd_back(t_node **lst, t_node *new)
 {
 	t_node	*the_last;
+	if ((*lst) == NULL)
+	{
+		(*lst) = new;
+		return ;
+	}
 
 	the_last = ft_lstlast(lst);
 	the_last->next = new;
-	// new->prev ÷= the_last;
 }

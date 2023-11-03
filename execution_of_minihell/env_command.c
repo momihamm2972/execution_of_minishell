@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/02 16:17:28 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/03 21:21:26 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,19 @@ char	*ft_backcpy(char *dst, const char *src, char del)
 {
 	int	indx;
 	int indj;
+	int len;
 
 	indx = 0;
 	indj = 0;
+	len = ft_strlen (src) - ft_len (src, '=');
 	if (!dst)
-		dst = ft_calloc (ft_len (src, del) + 1, sizeof (char));
+		dst = ft_calloc (len + 1, sizeof (char));
 	while (src[indx] && src[indx] != del)
 		indx++;
 	if (src[indx] == del)
 	{
 		indx++;
-		while (src[indx] != '\0')
+		while (src[indx])
 		{
 				dst[indj] = src[indx];
 				indx++;
@@ -71,7 +73,7 @@ t_node	**take_env(char **env)
 	list = malloc (sizeof (t_node *));
 	(*list) = NULL;
 	row = 0;
-	while (env[row])
+	while (env[row] != NULL)
 	{
 		ft_lstadd_back (list, ft_lstnew (env[row]));
 		row++;
@@ -91,11 +93,7 @@ void	print_list(t_node **list)
 	}
 }
 
-// void    env_command(t_node **my_env)
-// {
-//     int row;
-
-//     row = 0;
-//     while (env[row])
-//         printf ("%s\n",env[row++]);
-// }
+void    env_command(char **env)
+{
+	print_list (take_env(env));
+}

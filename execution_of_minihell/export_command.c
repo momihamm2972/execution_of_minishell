@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_excu.c                                        :+:      :+:    :+:   */
+/*   export_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/03 21:31:41 by momihamm         ###   ########.fr       */
+/*   Created: 2023/11/03 21:22:37 by momihamm          #+#    #+#             */
+/*   Updated: 2023/11/03 21:29:33 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_excu.h"
 
-int main(int ac, char **av, char **env)
+void    wher_i_am(t_node **my_env)
 {
-    (void) ac;
-    (void) av;
-    (void) env;
-    // env_command (env);
-    // t_node **kmi =take_env (env);
-    // (void) kmi;
+    t_node  *ptr;
+    int     current;
+
+    ptr = (*my_env);
+    current = 0;
+    while (ptr)
+    {
+        ptr->perv_position = current;
+        current++;
+        ptr = ptr->next;
+    }
 }
+
+// void    export_command(t_node **my_env)
+// {
+    
+// }
