@@ -6,13 +6,13 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/03 21:21:26 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:59:00 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_excu.h"
 
-int ft_len(char const *str, char c)
+int ft_len(char *str, char c)
 {
 	int len;
 
@@ -22,7 +22,21 @@ int ft_len(char const *str, char c)
 	return (len);
 }
 
-char	*ft_frontcpy(char *dst, const char *src, char del)
+int	is_ther_the_win_char(char *str, char c)
+{
+	int indx;
+
+	indx = 0;
+	while (str[indx])
+	{
+		if (str[indx] == c)
+			return 1;
+		indx++;
+	}
+	return (0);
+}
+
+char	*ft_frontcpy(char *dst, char *src, char del)
 {
 	int	indx;
 
@@ -38,12 +52,14 @@ char	*ft_frontcpy(char *dst, const char *src, char del)
 	return (dst);
 }
 
-char	*ft_backcpy(char *dst, const char *src, char del)
+char	*ft_backcpy(char *dst, char *src, char del)
 {
 	int	indx;
 	int indj;
 	int len;
 
+	if (is_ther_the_win_char(src, del) == 0)
+		return (NULL);
 	indx = 0;
 	indj = 0;
 	len = ft_strlen (src) - ft_len (src, '=');
@@ -93,7 +109,42 @@ void	print_list(t_node **list)
 	}
 }
 
+
+
+void	ft_free_contnue(t_node **lst)
+{
+	t_node	*ptr;
+
+	ptr = (*lst);
+	while (ptr)
+	{
+		free (ptr->key);
+		free (ptr->value_of_the_key);
+		ptr = ptr->next;
+	}
+}
+
+void	ft_free_list(t_node **list)
+{
+	t_node	*ptr0;
+	t_node	*ptr1;
+
+	ptr0 = (*list);
+	while (ptr0)
+	{
+		ptr1 = ptr0->next;
+		free (ptr0);
+		ptr0 = ptr1;
+	}
+	free (list);
+}
+
 void    env_command(char **env)
 {
-	print_list (take_env(env));
+	t_node **list;
+
+	list = take_env (env);
+	print_list (list);
+	ft_free_contnue (list);
+	ft_free_list (list);
 }

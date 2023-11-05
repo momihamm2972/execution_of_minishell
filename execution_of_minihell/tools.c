@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:39:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/02 12:46:20 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/05 20:43:19 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(char *s)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ void	*ft_memcpy(void *to, const void *from, size_t len)
 	return (to0);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	size_t	len;
 	char	*str;
@@ -70,15 +70,20 @@ char	*ft_strdup(const char *s1)
 	return (str);
 }
 
-// char	*ft_strdup(const char *s1)
-// {
-// 	size_t	len;
-// 	char	*str;
+int	ft_strcmp(char *s1, char *s2)
+{
+	int				indx;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-// 	len = ft_strlen(s1);
-// 	str = ft_calloc(len + 1, sizeof(char));
-// 	if (!str)
-// 		return (NULL);
-// 	ft_memcpy(str, s1, len);
-// 	return (str);
-// }
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
+	indx = 0;
+	while (str1[indx] || str2[indx])
+	{
+		if (str1[indx] != str2[indx])
+			return (str1[indx] - str2[indx]);
+		indx++;
+	}
+	return (0);
+}
