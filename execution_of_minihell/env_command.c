@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/05 21:59:00 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:50:54 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int ft_len(char *str, char c)
 	return (len);
 }
 
-int	is_ther_the_win_char(char *str, char c)
+int	is_ther_the_win_char(char *str, char c, int len)
 {
 	int indx;
 
 	indx = 0;
-	while (str[indx])
+	while (indx < len && str[indx])
 	{
 		if (str[indx] == c)
 			return 1;
@@ -40,6 +40,8 @@ char	*ft_frontcpy(char *dst, char *src, char del)
 {
 	int	indx;
 
+	if (!src)
+		return (NULL);
 	indx = 0;
 	if (!dst)
 		dst = ft_calloc (ft_len (src, del) + 1, sizeof (char));
@@ -58,7 +60,10 @@ char	*ft_backcpy(char *dst, char *src, char del)
 	int indj;
 	int len;
 
-	if (is_ther_the_win_char(src, del) == 0)
+
+	if (!src)
+		return (NULL);
+	if (is_ther_the_win_char(src, del, ft_strlen (src)) == 0)
 		return (NULL);
 	indx = 0;
 	indj = 0;

@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/05 21:58:52 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/08 21:37:10 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,14 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdbool.h>
 
 typedef struct node
 {
     char *key;
     char *value_of_the_key;
+    int plus;
+    int equl;
     // int perv_position;
     // int next_position;
     struct node *next;
@@ -29,6 +32,8 @@ typedef struct node
 
 /*##################################FUNCTOINS##################################*/
 t_node	**take_env(char **env);
+char	*ft_strjoin(char const *s1, char const *s2);
+t_node	*make_expo(char *exp);
 t_node	*ft_lstnew(char *env_val);
 void	ft_lstadd_front(t_node **lst, t_node *new);
 char	*ft_frontcpy_p(char *dst, char *src, char del);
@@ -52,8 +57,17 @@ char	*ft_frontcpy(char *dst, char *src, char del);
 char	*ft_backcpy(char *dst, char *src, char del);
 int	ft_strcmp(char *s1, char *s2);
 void    swap_nodes(t_node **my_env);
-void    export_command(t_node **my_env, char *arg);
-int	is_ther_the_win_char(char *str, char c);
+void    export_command(t_node **my_env, char **arg);
+void	free_all(char **s, int ptrs);
+int	num_of_word(char *s, char c);
+char	**ft_split(char *s, char c);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+int	is_ther_the_win_char(char *str, char c, int len);
+int	how_mane_plus(char *str, char c);
+int	ft_isalpha(int c);
+int	ft_isdigit(int c);
+void	print_export(t_node **list);
+
 /*#############################################################################*/
 
 #endif

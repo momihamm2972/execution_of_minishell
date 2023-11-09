@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 12:39:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/05 20:43:19 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:37:25 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	ft_strcmp(char *s1, char *s2)
 	unsigned char	*str1;
 	unsigned char	*str2;
 
+	if (!s1 || !s2)
+		return (-2147483648);
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
 	indx = 0;
@@ -86,4 +88,32 @@ int	ft_strcmp(char *s1, char *s2)
 		indx++;
 	}
 	return (0);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str1;
+	char	*str2;
+	size_t	indx_of_conca;
+	char	*buff;
+	size_t	indx;
+
+	if (!s1 || !s2)
+		return (NULL);
+	str1 = (char *)s1;
+	str2 = (char *)s2;
+	indx_of_conca = 0;
+	buff = malloc(ft_strlen(str1) + ft_strlen(str2) + 1);
+	if (!buff)
+		return (NULL);
+	indx = 0;
+	while (s1[indx] != '\0')
+	{
+		buff[indx] = str1[indx];
+		indx++;
+	}
+	while (indx < (ft_strlen(str1) + ft_strlen(str2)))
+		buff[indx++] = str2[indx_of_conca++];
+	buff[indx] = '\0';
+	return (buff);
 }
