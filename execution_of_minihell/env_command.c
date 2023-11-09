@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/08 16:50:54 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:56:46 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*ft_frontcpy(char *dst, char *src, char del)
 	indx = 0;
 	if (!dst)
 		dst = ft_calloc (ft_len (src, del) + 1, sizeof (char));
+	if (!dst)
+		return (NULL);
 	while (src[indx] && src[indx] != del)
 	{
 			dst[indx] = src[indx];

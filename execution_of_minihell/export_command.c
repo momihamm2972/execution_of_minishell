@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:22:37 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/08 21:44:29 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:02:55 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,49 +85,49 @@ int	check_is_exist(t_node **list, char *var)
 	return (0);
 }
 
-char	*ft_cpyout(char *dst, char *src, char out)
-{
-	int	indx_i;
-	int	indx_j;
+// char	*ft_cpyout(char *dst, char *src, char out)
+// {
+// 	int	indx_i;
+// 	int	indx_j;
 
-	indx_i = 0;
-	indx_j = 0;
-	while (src[indx_i])
-	{
-		if (src[indx_i] == out)
-		{
-			indx_i++;
-			if (src[indx_i] == '\0')
-			{
-				dst[indx_j] = '\0';
-				return (dst);
-			}
-		}
-		dst[indx_j] = src[indx_i];
-		indx_i++;
-		indx_j++;
-	}
-	dst[indx_j] = '\0';
-	return (dst);
-}
+// 	indx_i = 0;
+// 	indx_j = 0;
+// 	while (src[indx_i])
+// 	{
+// 		if (src[indx_i] == out)
+// 		{
+// 			indx_i++;
+// 			if (src[indx_i] == '\0')
+// 			{
+// 				dst[indx_j] = '\0';
+// 				return (dst);
+// 			}
+// 		}
+// 		dst[indx_j] = src[indx_i];
+// 		indx_i++;
+// 		indx_j++;
+// 	}
+// 	dst[indx_j] = '\0';
+// 	return (dst);
+// }
 
-int	how_mane_plus(char *str, char c)
-{
-	int indx;
-	int cont;
+// int	how_mane_plus(char *str, char c)
+// {
+// 	int indx;
+// 	int cont;
 
-	indx = 0;
-	cont = 0;
-	while (str[indx])
-	{
-		// if (str[indx] == c)
-		// 	return (cont);
-		if (str[indx] == c)
-			cont++;
-		indx++;
-	}
-	return (cont);
-}
+// 	indx = 0;
+// 	cont = 0;
+// 	while (str[indx])
+// 	{
+// 		// if (str[indx] == c)
+// 		// 	return (cont);
+// 		if (str[indx] == c)
+// 			cont++;
+// 		indx++;
+// 	}
+// 	return (cont);
+// }
 
 void	take_out(char *str)
 {
@@ -145,95 +145,148 @@ void	take_out(char *str)
 	}
 }
 
-int is_valid(char *str)
-{
-	char	*key;
-	char	*val;
-	int		indx;
+// int is_valid(char *str)
+// {
+// 	char	*key;
+// 	char	*val;
+// 	int		indx;
 
-	key = NULL;
-	val = NULL;
-	indx = 0;
-	key = ft_frontcpy (key, str, '=');
-	val = ft_backcpy (val, str, '=');
-	while (key[indx])
+// 	key = NULL;
+// 	val = NULL;
+// 	indx = 0;
+// 	key = ft_frontcpy (key, str, '=');
+// 	val = ft_backcpy (val, str, '=');
+// 	while (key[indx])
+// 	{
+// 		if (key[indx] == '+')
+// 			indx++;
+// 		if (ft_isalpha (key[indx]) == 1 && ft_isalpha (key[indx]) == 0)
+// 			return (1);
+// 		indx++;
+// 	}
+// 	return (0);
+// }
+
+// t_node	*make_expo(char *exp)
+// {
+
+// }
+
+t_node	*take_key_vlu(char *str)
+{
+	t_node	*new;
+
+	new = ft_lstnew (str);
+	return (new);
+}
+
+int	is_num_sp(char c)
+{
+	if ((c >= 33 && c <= 64) || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 126))
 	{
-		if (key[indx] == '+')
-			indx++;
-		if (ft_isalpha (key[indx]) == 1 && ft_isalpha (key[indx]) == 0)
-			return (1);
-		indx++;
+		// printf (">>%c>>%d\n",c,c);
+		return (1);
 	}
+	// printf (">>|\"%c\">>%d\n",c,c);
 	return (0);
 }
 
-t_node	*make_expo(char *exp)
+int	whitout_plus(char c)
 {
-	t_node *new = malloc (sizeof (t_node));
+	if (c == 43)
+		return (2);
+	if ((c >= 33 && c <= 42) || (c >= 44 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 126))
+		return (1);
+	return (0);
+}
 
-	if (!exp)
-		return (NULL);
-	if (is_valid (exp) == 1)
+int	key_error(t_node *test)
+{
+	int	indx;
+
+	indx = 0;
+	printf ("[%s]\n",test->key);
+	if (is_num_sp (test->key[indx]) == 1)
 	{
-		printf ("$$|%s\n",exp);
-		return (NULL);
+		printf (" export: `%s",test->key);
+		if (test->value_of_the_key)
+			printf("=%s': not a valid identifier\n", test->value_of_the_key);
+		else
+			printf ("': not a valid identifier\n");
+		return (1);
 	}
-	else
+	indx = 1;
+	while (test->key[indx])
 	{
-		new->key = NULL;
-		new->value_of_the_key = NULL;
-		new->plus = 0;
-		new->equl = 0;
-		if (is_ther_the_win_char (exp, '+', ft_strlen (exp)) == 0 && is_ther_the_win_char (exp, '=', ft_strlen (exp)) == 0)
+		if (whitout_plus(test->key[indx]) == 2)
 		{
-			// printf ("tajin\n");
-			new->key = ft_frontcpy (new->key, exp, '\0');
-			printf ("%s\n",new->key);
+			// printf ("hx\n");
+			if (test->key[indx + 1] != '\0')
+			{
+				printf (" export: `%s",test->key);
+				if (test->value_of_the_key)
+					printf("=%s': not a valid identifier\n", test->value_of_the_key);
+				else
+					printf ("': not a valid identifier\n");
+				return (1);
+			}
 		}
-		else if (is_ther_the_win_char (exp, '+', ft_len (exp, '=')) == 1)
+		else if (whitout_plus(test->key[indx]) == 1)
 		{
-			new->plus = 1;
-			new->key = ft_frontcpy (new->key, exp, '=');
-			// printf("~~~~~~%s~~~~%d~\n",new->key, how_mane_plus (new->key, '+'));
-			new->value_of_the_key = ft_backcpy (new->value_of_the_key, exp, '=');
-			if (how_mane_plus (new->key, '+') > 1)
-				printf (" export: `%s': not a valid identifier\n",exp);
+			printf (" export: `%s",test->key);
+			if (test->value_of_the_key)
+				printf("=%s': not a valid identifier\n", test->value_of_the_key);
 			else
-				take_out (new->key);
-			printf ("[%s]\n[%s]\n",new->key, new->value_of_the_key);
+				printf ("': not a valid identifier\n");
+			return (1);
 		}
-		else if (is_ther_the_win_char (exp, '+', ft_len (exp, '=')) == 0)
-		{
-			// printf ("kmi\n");
-			new->equl = 1;
-			new->key = ft_frontcpy (new->key, exp, '=');
-			new->value_of_the_key = ft_backcpy (new->value_of_the_key, exp, '=');
-			printf ("{%s}\n{%s}\n((%s))\n",new->key, new->value_of_the_key,exp);
-		}
-		new->next = NULL;
-		return (new);
+		indx++;
 	}
+	// atleast one char;
+	return (0);
+}
+
+int	how_alpha(char *str)
+{
+	int	indx;
+	int	cont;
+
+	indx = 0;
+	cont = 0;
+	while (str[indx])
+	{
+		if (ft_isalpha (str[indx]) == 1 || ft_isdigit (str[indx]) == 1)
+			cont++;
+		indx++;
+	}
+	return (cont);
 }
 
 void    export_command(t_node **my_env, char **arg)
 {
-	(void) my_env;
-	t_node	*usfull;
-	t_node	*last;
+	t_node	*new;
 	int		row;
-
+	
 	row = 0;
 	while (arg[row])
 	{
-		printf ("<<%s>>\n",arg[row]);
-		usfull = make_expo (arg[row]);
-		// printf ("k???%s?\nv|||%s||\n",usfull->key, usfull->value_of_the_key);
-		if (check_is_exist (my_env, usfull->key) == 0)
+		
+		printf ("<%s>\n",arg[row]);
+		new = take_key_vlu (arg[row]);
+		if (how_alpha (new->key) == 0)
 		{
-			last = ft_lstlast (my_env);
-			last->next = usfull;
+			printf ("rewicha\n");
+			return ;
 		}
+		if (arg[row][0] == '=')
+		{
+			printf (" export: `%s': not a valid identifier\n", arg[row]);
+			return ;
+		}
+		if (key_error (new) == 1)
+			return ;
 		row++;
 	}
-	print_export (my_env);
+	printf ("jmil\n");
+	// print_export (my_env);
 }
