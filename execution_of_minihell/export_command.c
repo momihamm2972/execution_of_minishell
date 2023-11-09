@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:22:37 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 18:02:55 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:22:48 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void    swap_nodes(t_node **my_env)
 	}
 }
 
-int	check_is_exist(t_node **list, char *var)
+t_node	*check_is_exist(t_node **list, char *var)
 {
 	t_node	*ptr;
 
@@ -79,55 +79,14 @@ int	check_is_exist(t_node **list, char *var)
 	while (ptr)
 	{
 		if (ft_strcmp (ptr->key, var) == 0)
-			return (1);
+			return (ptr);
 		ptr = ptr->next;
 	}
-	return (0);
+	return (NULL);
 }
 
-// char	*ft_cpyout(char *dst, char *src, char out)
-// {
-// 	int	indx_i;
-// 	int	indx_j;
 
-// 	indx_i = 0;
-// 	indx_j = 0;
-// 	while (src[indx_i])
-// 	{
-// 		if (src[indx_i] == out)
-// 		{
-// 			indx_i++;
-// 			if (src[indx_i] == '\0')
-// 			{
-// 				dst[indx_j] = '\0';
-// 				return (dst);
-// 			}
-// 		}
-// 		dst[indx_j] = src[indx_i];
-// 		indx_i++;
-// 		indx_j++;
-// 	}
-// 	dst[indx_j] = '\0';
-// 	return (dst);
-// }
 
-// int	how_mane_plus(char *str, char c)
-// {
-// 	int indx;
-// 	int cont;
-
-// 	indx = 0;
-// 	cont = 0;
-// 	while (str[indx])
-// 	{
-// 		// if (str[indx] == c)
-// 		// 	return (cont);
-// 		if (str[indx] == c)
-// 			cont++;
-// 		indx++;
-// 	}
-// 	return (cont);
-// }
 
 void	take_out(char *str)
 {
@@ -145,32 +104,7 @@ void	take_out(char *str)
 	}
 }
 
-// int is_valid(char *str)
-// {
-// 	char	*key;
-// 	char	*val;
-// 	int		indx;
 
-// 	key = NULL;
-// 	val = NULL;
-// 	indx = 0;
-// 	key = ft_frontcpy (key, str, '=');
-// 	val = ft_backcpy (val, str, '=');
-// 	while (key[indx])
-// 	{
-// 		if (key[indx] == '+')
-// 			indx++;
-// 		if (ft_isalpha (key[indx]) == 1 && ft_isalpha (key[indx]) == 0)
-// 			return (1);
-// 		indx++;
-// 	}
-// 	return (0);
-// }
-
-// t_node	*make_expo(char *exp)
-// {
-
-// }
 
 t_node	*take_key_vlu(char *str)
 {
@@ -182,12 +116,9 @@ t_node	*take_key_vlu(char *str)
 
 int	is_num_sp(char c)
 {
-	if ((c >= 33 && c <= 64) || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 126))
-	{
-		// printf (">>%c>>%d\n",c,c);
+	if ((c >= 33 && c <= 64) || (c >= 91 && c <= 94)
+		|| c == 96 || (c >= 123 && c <= 126))
 		return (1);
-	}
-	// printf (">>|\"%c\">>%d\n",c,c);
 	return (0);
 }
 
@@ -195,9 +126,19 @@ int	whitout_plus(char c)
 {
 	if (c == 43)
 		return (2);
-	if ((c >= 33 && c <= 42) || (c >= 44 && c <= 47) || (c >= 58 && c <= 64) || (c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 126))
+	if ((c >= 33 && c <= 42) || (c >= 44 && c <= 47) || (c >= 58 && c <= 64) ||
+		(c >= 91 && c <= 94) || c == 96 || (c >= 123 && c <= 126))
 		return (1);
 	return (0);
+}
+
+void	error_export(char *key, char *val)
+{
+	printf (" export: `%s",key);
+	if (val)
+		printf("=%s': not a valid identifier\n", val);
+	else
+		printf ("': not a valid identifier\n");
 }
 
 int	key_error(t_node *test)
@@ -205,44 +146,27 @@ int	key_error(t_node *test)
 	int	indx;
 
 	indx = 0;
-	printf ("[%s]\n",test->key);
 	if (is_num_sp (test->key[indx]) == 1)
 	{
-		printf (" export: `%s",test->key);
-		if (test->value_of_the_key)
-			printf("=%s': not a valid identifier\n", test->value_of_the_key);
-		else
-			printf ("': not a valid identifier\n");
+		error_export (test->key, test->value_of_the_key);
 		return (1);
 	}
-	indx = 1;
-	while (test->key[indx])
+	while (test->key[++indx])
 	{
 		if (whitout_plus(test->key[indx]) == 2)
 		{
-			// printf ("hx\n");
 			if (test->key[indx + 1] != '\0')
 			{
-				printf (" export: `%s",test->key);
-				if (test->value_of_the_key)
-					printf("=%s': not a valid identifier\n", test->value_of_the_key);
-				else
-					printf ("': not a valid identifier\n");
+				error_export (test->key, test->value_of_the_key);
 				return (1);
 			}
 		}
 		else if (whitout_plus(test->key[indx]) == 1)
 		{
-			printf (" export: `%s",test->key);
-			if (test->value_of_the_key)
-				printf("=%s': not a valid identifier\n", test->value_of_the_key);
-			else
-				printf ("': not a valid identifier\n");
+			error_export (test->key, test->value_of_the_key);
 			return (1);
 		}
-		indx++;
 	}
-	// atleast one char;
 	return (0);
 }
 
@@ -262,22 +186,40 @@ int	how_alpha(char *str)
 	return (cont);
 }
 
+int	is_ther_plus(char *str)
+{
+	int indx;
+
+	indx = 0;
+	while (str[indx])
+	{
+		if (str[indx] == '+')
+			return (1);
+		indx++;
+	}
+	return (0);
+}
+
 void    export_command(t_node **my_env, char **arg)
 {
+	(void) my_env;
 	t_node	*new;
+	t_node	*last;
+	t_node	*an_node;
 	int		row;
 	
 	row = 0;
+	if (!arg)
+	{
+		swap_nodes(my_env);
+		print_export (my_env);
+		return ;
+	}
 	while (arg[row])
 	{
-		
-		printf ("<%s>\n",arg[row]);
 		new = take_key_vlu (arg[row]);
 		if (how_alpha (new->key) == 0)
-		{
-			printf ("rewicha\n");
 			return ;
-		}
 		if (arg[row][0] == '=')
 		{
 			printf (" export: `%s': not a valid identifier\n", arg[row]);
@@ -285,6 +227,38 @@ void    export_command(t_node **my_env, char **arg)
 		}
 		if (key_error (new) == 1)
 			return ;
+		if (is_ther_plus (new->key) == 1)
+		{
+			// printf ("sami\n");
+			new->plus = 1;
+			// printf ("B|%s|\n", new->key);
+			take_out (new->key);
+			// printf ("A|%s|\n", new->key);
+		}
+		// printf ("N+/%s/\n",new->key);
+		an_node = check_is_exist (my_env, new->key);
+		if (an_node != NULL)
+		{
+			printf ("kane\n");
+			if (new->plus == 1)
+			{
+				printf ("B|%s|\n", an_node->value_of_the_key);
+				an_node->value_of_the_key = ft_strjoin (an_node->value_of_the_key, new->value_of_the_key);
+				printf ("A|%s|\n", an_node->value_of_the_key);
+			}
+			else
+			{
+				printf (">A|%s|\n", an_node->value_of_the_key);
+				an_node->value_of_the_key = new->value_of_the_key;
+				printf (">B|%s|\n", an_node->value_of_the_key);
+			}
+		}
+		else
+		{
+			printf ("jadid\n");
+			last = ft_lstlast (my_env);
+			last->next	= new;
+		}
 		row++;
 	}
 	printf ("jmil\n");

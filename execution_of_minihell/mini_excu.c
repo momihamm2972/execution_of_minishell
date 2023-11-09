@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 18:00:30 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:23:07 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int main(int ac, char **av, char **env)
     (void) ac;
     (void) av;
     (void) env;
-    char **kmi = ft_split ("    _fkjalskd+=amazigh     ", ' ');  
+    char **kmi = ft_split ("    Fkjalskd=amazigh           Fkjalskd+=tamazighet         ", ' ');  
     t_node **my_env = take_env (env);
     export_command (my_env, kmi);
+    export_command (my_env, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 13:49:10 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/09 19:16:57 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct node
 /*##################################FUNCTOINS##################################*/
 t_node	**take_env(char **env);
 char	*ft_strjoin(char const *s1, char const *s2);
-t_node	*make_expo(char *exp);
+// t_node	*make_po(char *exp);
 t_node	*ft_lstnew(char *env_val);
 void	ft_lstadd_front(t_node **lst, t_node *new);
 char	*ft_frontcpy_p(char *dst, char *src, char del);
@@ -49,7 +49,7 @@ void    my_pdw(void);
 char	*ft_strdup(char *s1);
 void	*ft_memcpy(void *to, const void *from, size_t len);
 size_t	ft_strlen(char *s);
-int	check_is_exist(t_node **list, char *var);
+// int	check_is_exist(t_node **list, char *var);
 void	*ft_calloc(size_t count, size_t size);
 void    my_echo_n(char *mess);
 void    env_command(char **env);
@@ -63,11 +63,12 @@ int	num_of_word(char *s, char c);
 char	**ft_split(char *s, char c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 int	is_ther_the_win_char(char *str, char c, int len);
-int	how_mane_plus(char *str, char c);
+// int	how_mane_plus(char *str, char c);
 int	ft_isalpha(int c);
 int	ft_isdigit(int c);
 void	print_export(t_node **list);
 t_node	*take_key_vlu(char *str);
+t_node	*check_is_exist(t_node **list, char *var);
 
 /*#############################################################################*/
 
