@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:22:37 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/10 21:16:12 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/10 22:30:46 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,6 +220,10 @@ int is_equal(char *str)
 	return (0);
 }
 
+// void	pars_input(char *str, t_node *new)
+// {
+	
+// }
 
 void	export_remplass(t_node *list, t_node *one)
 {
@@ -290,27 +294,37 @@ void	check_link(t_node **my_env, t_node *new)
 	}
 }
 
+int	check_nil(t_node **env, char **matrix)
+{
+	if (!matrix)
+	{
+		swap_nodes (env);
+		print_export (env);
+		return (1);
+	}
+	return (0);
+}
+
+void	intial(t_node *new, char *str)
+{
+	new = ft_lstnew (str);
+	if (is_equal (str) == 1)
+		new->equl = 1;
+}
+
 void    export_command(t_node **my_env, char **arg)
 {
 	t_node	*new;
-	t_node	*ptr;
 	int		row;
 
-	new = NULL;
-	ptr = NULL;
-	row = 0;
-	if (!arg)
-	{
-		swap_nodes(my_env);
-		print_export (my_env);
+	row = -1;
+	if (check_nil (my_env, arg) == 1)
 		return ;
-	}
-	while (arg[row])
+	while (arg[++row])
 	{
 		new = ft_lstnew (arg[row]);
 		if (is_equal (arg[row]) == 1)
 			new->equl = 1;
-		ptr = new;
 		if (how_alpha (new->key) == 0)
 		{
 			ft_free_contnue (&new);
@@ -324,6 +338,5 @@ void    export_command(t_node **my_env, char **arg)
 			break;
 		}
 		check_link (my_env, new);
-		row++;
 	}
 }
