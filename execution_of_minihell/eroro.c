@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:14:45 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 20:35:07 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:00:08 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,3 +32,7 @@ the first character should be only _ or alphabet the other characters should be 
 
   char st[1000] = "zoq+=" 
   char st[1000] = "@@@@@@@" 
+  
+  "_=hello
+  "hello+=llyes"
+  

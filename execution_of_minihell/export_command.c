@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:22:37 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/10 18:26:35 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/10 21:16:12 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void    swap_nodes(t_node **my_env)
 			ptr->next->key = swp0;
 			ptr->next->value_of_the_key = swp1;
 			ptr = (*my_env);
-			// free (swp0);
-			// free (swp1);
 		}
 		else
 			ptr = ptr->next;
@@ -149,7 +147,6 @@ int	key_error(t_node *test)
 	if (is_num_sp (test->key[indx]) == 1)
 	{
 		error_export (test->key, test->value_of_the_key);
-		// free (test);
 		return (1);
 	}
 	while (test->key[++indx])
@@ -159,14 +156,12 @@ int	key_error(t_node *test)
 			if (test->key[indx + 1] != '\0')
 			{
 				error_export (test->key, test->value_of_the_key);
-				// free (test);
 				return (1);
 			}
 		}
 		else if (whitout_plus(test->key[indx]) == 1)
 		{
 			error_export (test->key, test->value_of_the_key);
-			// free (test);
 			return (1);
 		}
 	}
@@ -205,6 +200,12 @@ int	is_ther_plus(char *str)
 	return (0);
 }
 
+void	make_out(t_node *node)
+{
+	node->plus = 1;
+	take_out (node->key);
+}
+
 int is_equal(char *str)
 {
 	int	indx;
@@ -219,68 +220,68 @@ int is_equal(char *str)
 	return (0);
 }
 
+
+void	export_remplass(t_node *list, t_node *one)
+{
+	char	*ptr;
+
+	ptr = list->value_of_the_key;
+	list->value_of_the_key = one->value_of_the_key;
+	free (ptr);
+	free (one->key);
+	free (one);
+}
+
+void	remplace(t_node *list, t_node *one)
+{
+	if (one->equl == 1 && one->plus == 0)
+		export_remplass (list, one);
+	else
+	{
+		ft_free_contnue (&one);
+		free (one);
+	}
+}
+
+void	export_conca(t_node *list, t_node *one)
+{
+	char	*ptr;
+
+	ptr = list->value_of_the_key;
+	list->value_of_the_key = ft_strjoin (list->value_of_the_key, one->value_of_the_key);
+	free (ptr);
+	ft_free_contnue (&one);
+	free (one);
+}
+
+void	take_last_link(t_node **env, t_node *new)
+{
+	t_node	*last;
+
+	last = ft_lstlast (env);
+	last->next = new;
+}
+
 void	check_link(t_node **my_env, t_node *new)
 {
 	t_node	*an_node;
-	t_node	*last;
-	char	*ptr;
 	
 	if (!my_env || !new)
 		return ;
 	if (key_error (new) == 0)
 	{
 		if (is_ther_plus (new->key) == 1)
-		{
-			new->plus = 1;
-			take_out (new->key);
-		}
+			make_out (new);
 		an_node = check_is_exist (my_env, new->key);
 		if (an_node != NULL)
 		{
 			if (new->plus == 1)
-			{
-				ptr = an_node->value_of_the_key;
-				an_node->value_of_the_key= ft_strjoin (an_node->value_of_the_key, new->value_of_the_key);
-				free (ptr);
-				// free (new)
-				ft_free_contnue (&new);
-				free (new);
-			}
+				export_conca (an_node, new);
 			else
-			{
-				// remplassi
-				if (new->equl == 1 && new->plus == 0)
-				{
-					// pirntf ("")
-					ptr = an_node->value_of_the_key;
-					an_node->value_of_the_key = new->value_of_the_key;
-					free (ptr);
-					free (new->key);
-					// ft_free_contnue (&new);
-					free (new);
-				}
-				else
-				{
-					ft_free_contnue (&new);
-					// free (new->key);
-					free (new);
-					// ft_free_list (&new);
-				}
-				// {
-				// 	ptr = an_node->value_of_the_key;
-				// 	an_node->value_of_the_key = ft_strdup ("");
-				// 	free (ptr);
-				// 	ft_free_contnue (&new);
-				// 	free (new);
-				// }
-				
-			}
+				remplace (an_node, new);
 		}
 		else
-		{
-			last = ft_lstlast (my_env);
-			last->next = new;
-		}
+			take_last_link(my_env, new);
 	}
 	else
 	{
@@ -308,13 +309,11 @@ void    export_command(t_node **my_env, char **arg)
 	{
 		new = ft_lstnew (arg[row]);
 		if (is_equal (arg[row]) == 1)
-		{
 			new->equl = 1;
-			printf ("<%s>\n",arg[row]);
-		}
 		ptr = new;
 		if (how_alpha (new->key) == 0)
 		{
+			ft_free_contnue (&new);
 			free (new);
 			break;
 		}
@@ -325,7 +324,6 @@ void    export_command(t_node **my_env, char **arg)
 			break;
 		}
 		check_link (my_env, new);
-		// free (ptr);
 		row++;
 	}
 }
