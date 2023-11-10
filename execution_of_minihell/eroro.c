@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 21:14:45 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/08 21:55:17 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:35:07 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,6 @@ bash-3.2$ export _2abi3a=hello
 variable name [_ or alpha] [_ or alpha or number]
 the first character should be only _ or alphabet the other characters should be onlt _ or alphabet or numbers
  printf ("%p\n", make_expo("*tabi3a=hello"));
+
+  char st[1000] = "zoq+=" 
+  char st[1000] = "@@@@@@@" 

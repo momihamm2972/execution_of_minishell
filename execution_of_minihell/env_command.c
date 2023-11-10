@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 13:56:46 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:21:17 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,10 @@ void	ft_free_contnue(t_node **lst)
 {
 	t_node	*ptr;
 
+	if (!lst)
+		return ;
+	if (!(*lst))
+		return ;
 	ptr = (*lst);
 	while (ptr)
 	{
@@ -136,6 +140,10 @@ void	ft_free_list(t_node **list)
 	t_node	*ptr0;
 	t_node	*ptr1;
 
+	if (!list)
+		return ;
+	if (!(*list))
+		return ;
 	ptr0 = (*list);
 	while (ptr0)
 	{

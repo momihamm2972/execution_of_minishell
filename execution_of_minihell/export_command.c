@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 21:22:37 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 19:22:48 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:26:35 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ int	key_error(t_node *test)
 	if (is_num_sp (test->key[indx]) == 1)
 	{
 		error_export (test->key, test->value_of_the_key);
+		// free (test);
 		return (1);
 	}
 	while (test->key[++indx])
@@ -158,12 +159,14 @@ int	key_error(t_node *test)
 			if (test->key[indx + 1] != '\0')
 			{
 				error_export (test->key, test->value_of_the_key);
+				// free (test);
 				return (1);
 			}
 		}
 		else if (whitout_plus(test->key[indx]) == 1)
 		{
 			error_export (test->key, test->value_of_the_key);
+			// free (test);
 			return (1);
 		}
 	}
@@ -179,6 +182,8 @@ int	how_alpha(char *str)
 	cont = 0;
 	while (str[indx])
 	{
+		if (str[indx] == 95 && str[indx + 1] != '\0')
+			cont++;
 		if (ft_isalpha (str[indx]) == 1 || ft_isdigit (str[indx]) == 1)
 			cont++;
 		indx++;
@@ -200,14 +205,98 @@ int	is_ther_plus(char *str)
 	return (0);
 }
 
+int is_equal(char *str)
+{
+	int	indx;
+
+	indx = 0;
+	while (str[indx])
+	{
+		if (str[indx] == '=')
+			return (1);
+		indx++;
+	}
+	return (0);
+}
+
+void	check_link(t_node **my_env, t_node *new)
+{
+	t_node	*an_node;
+	t_node	*last;
+	char	*ptr;
+	
+	if (!my_env || !new)
+		return ;
+	if (key_error (new) == 0)
+	{
+		if (is_ther_plus (new->key) == 1)
+		{
+			new->plus = 1;
+			take_out (new->key);
+		}
+		an_node = check_is_exist (my_env, new->key);
+		if (an_node != NULL)
+		{
+			if (new->plus == 1)
+			{
+				ptr = an_node->value_of_the_key;
+				an_node->value_of_the_key= ft_strjoin (an_node->value_of_the_key, new->value_of_the_key);
+				free (ptr);
+				// free (new)
+				ft_free_contnue (&new);
+				free (new);
+			}
+			else
+			{
+				// remplassi
+				if (new->equl == 1 && new->plus == 0)
+				{
+					// pirntf ("")
+					ptr = an_node->value_of_the_key;
+					an_node->value_of_the_key = new->value_of_the_key;
+					free (ptr);
+					free (new->key);
+					// ft_free_contnue (&new);
+					free (new);
+				}
+				else
+				{
+					ft_free_contnue (&new);
+					// free (new->key);
+					free (new);
+					// ft_free_list (&new);
+				}
+				// {
+				// 	ptr = an_node->value_of_the_key;
+				// 	an_node->value_of_the_key = ft_strdup ("");
+				// 	free (ptr);
+				// 	ft_free_contnue (&new);
+				// 	free (new);
+				// }
+				
+			}
+		}
+		else
+		{
+			last = ft_lstlast (my_env);
+			last->next = new;
+		}
+	}
+	else
+	{
+		ft_free_contnue (&new);
+		free (new);
+	}
+}
+
 void    export_command(t_node **my_env, char **arg)
 {
-	(void) my_env;
 	t_node	*new;
-	t_node	*last;
-	t_node	*an_node;
+	t_node	*ptr;
 	int		row;
-	
+
+	new = NULL;
+	ptr = NULL;
 	row = 0;
 	if (!arg)
 	{
@@ -217,50 +306,26 @@ void    export_command(t_node **my_env, char **arg)
 	}
 	while (arg[row])
 	{
-		new = take_key_vlu (arg[row]);
+		new = ft_lstnew (arg[row]);
+		if (is_equal (arg[row]) == 1)
+		{
+			new->equl = 1;
+			printf ("<%s>\n",arg[row]);
+		}
+		ptr = new;
 		if (how_alpha (new->key) == 0)
-			return ;
+		{
+			free (new);
+			break;
+		}
 		if (arg[row][0] == '=')
 		{
 			printf (" export: `%s': not a valid identifier\n", arg[row]);
-			return ;
+			free (new);
+			break;
 		}
-		if (key_error (new) == 1)
-			return ;
-		if (is_ther_plus (new->key) == 1)
-		{
-			// printf ("sami\n");
-			new->plus = 1;
-			// printf ("B|%s|\n", new->key);
-			take_out (new->key);
-			// printf ("A|%s|\n", new->key);
-		}
-		// printf ("N+/%s/\n",new->key);
-		an_node = check_is_exist (my_env, new->key);
-		if (an_node != NULL)
-		{
-			printf ("kane\n");
-			if (new->plus == 1)
-			{
-				printf ("B|%s|\n", an_node->value_of_the_key);
-				an_node->value_of_the_key = ft_strjoin (an_node->value_of_the_key, new->value_of_the_key);
-				printf ("A|%s|\n", an_node->value_of_the_key);
-			}
-			else
-			{
-				printf (">A|%s|\n", an_node->value_of_the_key);
-				an_node->value_of_the_key = new->value_of_the_key;
-				printf (">B|%s|\n", an_node->value_of_the_key);
-			}
-		}
-		else
-		{
-			printf ("jadid\n");
-			last = ft_lstlast (my_env);
-			last->next	= new;
-		}
+		check_link (my_env, new);
+		// free (ptr);
 		row++;
 	}
-	printf ("jmil\n");
-	// print_export (my_env);
 }

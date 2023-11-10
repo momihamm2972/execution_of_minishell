@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:45:30 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/05 21:58:44 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/10 18:19:37 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_node	*ft_lstnew(char *env_val)
 	head->value_of_the_key = NULL;
 	head->key = ft_frontcpy (head->key, env_val, '=');
 	head->value_of_the_key = ft_backcpy (head->value_of_the_key, env_val, '=');
+	head->equl = 0;
+	head->plus = 0;
 	head->next = NULL;
 	return (head);
 }
