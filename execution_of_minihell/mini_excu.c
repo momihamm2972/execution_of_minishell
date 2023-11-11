@@ -31,8 +31,21 @@ int main(int ac, char **av, char **env)
     t_node **my_env = take_env (env);
     (void) my_env;
     (void) words;
+    int i =0;
+    t_node *dor;
+    dor = (*my_env);
+    while (dor)
+    {
+        if (i == 2)
+            dor->next = NULL;
+        dor = dor->next;
+        i++;
+    }
     export_command (my_env, kmi);
+    // print_export (my_env);
     export_command (my_env, NULL);
+    unset_command (my_env, "lkmaya");
+    unset_command (my_env, "wiiw");
     // export_command (my_env, NULL);
     free_all (kmi, words);
     ft_free_contnue (my_env);

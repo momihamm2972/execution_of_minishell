@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/11 15:56:40 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/11 16:07:31 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	check_link(t_node **my_env, t_node *new);
 int	check_nil(t_node **env, char **matrix);
 void	intial(t_node *new, char *str);
 // void	export_command(t_node **my_env, char **arg);
+void    unset_command(t_node **env, char *str);
 
 
 
