@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/09 19:16:57 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/11 15:56:40 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,33 @@ typedef struct node
 
 /*##################################FUNCTOINS##################################*/
 t_node	**take_env(char **env);
+void	print_export(t_node **list);
+char	*ft_frontcpy_p(char *dst, char *src, char del);
+void	swap_nodes(t_node **my_env);
+t_node	*check_is_exist(t_node **list, char *var);
+void	take_out(char *str);
+t_node	*take_key_vlu(char *str);
+int	is_num_sp(char c);
+int	whitout_plus(char c);
+void	error_export(char *key, char *val);
+int	key_error(t_node *test);
+int	how_alpha(char *str);
+int	is_ther_plus(char *str);
+void	make_out(t_node *node);
+int	is_equal(char *str);
+void	export_remplass(t_node *list, t_node *one);
+void	remplace(t_node *list, t_node *one);
+void	export_conca(t_node *list, t_node *one);
+void	take_last_link(t_node **env, t_node *new);
+void	check_link(t_node **my_env, t_node *new);
+int	check_nil(t_node **env, char **matrix);
+void	intial(t_node *new, char *str);
+// void	export_command(t_node **my_env, char **arg);
+
+
+
+
+
 char	*ft_strjoin(char const *s1, char const *s2);
 // t_node	*make_po(char *exp);
 t_node	*ft_lstnew(char *env_val);

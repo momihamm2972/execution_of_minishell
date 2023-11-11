@@ -6,7 +6,7 @@
 #    By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 03:15:02 by momihamm          #+#    #+#              #
-#    Updated: 2023/11/10 20:25:39 by momihamm         ###   ########.fr        #
+#    Updated: 2023/11/11 15:52:36 by momihamm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,10 @@ FILES = mini_excu.c\
 		env_command.c\
 		ft_linked_list.c\
 		export_command.c\
+		export_command1.c\
+		export_command2.c\
+		export_command3.c\
+		export_command4.c\
 		split.c
 
 OBJ = $(FILES:.c=.o)
