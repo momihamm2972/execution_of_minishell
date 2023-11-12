@@ -25,29 +25,32 @@ int main(int ac, char **av, char **env)
     atexit (mr);
     // char *st;
     // char *st = av[1];
-    char st[1000] = "    _*=kmi  wiiw=lafafa  wiiw= __=kmi lkmaya  lkmaya=gang   _=hello  ";//lkmaya  wiiw wiiw=14    " ; // ___=hhh       mouad=11 mouad
-    char **kmi = ft_split (st, ' ');  
-    int words = num_of_word (st, ' ');
+    // char st[1000] = "    wiiw=lafafa  wiiw=  wiiw wiiw=14";//lkmaya  wiiw wiiw=14    " ; // ___=hhh       mouad=11 mouad
+    // char **kmi = ft_split (st, ' ');  
+    // int words = num_of_word (st, ' ');
     t_node **my_env = take_env (env);
     (void) my_env;
-    (void) words;
-    int i =0;
-    t_node *dor;
-    dor = (*my_env);
-    while (dor)
-    {
-        if (i == 2)
-            dor->next = NULL;
-        dor = dor->next;
-        i++;
-    }
-    export_command (my_env, kmi);
+    // (void) words;
+    // int i =0;
+    // t_node *dor;
+    // dor = (*my_env);
+    // while (dor)
+    // {
+    //     if (i == 1)
+    //         dor->next = NULL;
+    //     dor = dor->next;
+    //     i++;
+    // }
+    // export_command (my_env, kmi);
     // print_export (my_env);
     export_command (my_env, NULL);
-    unset_command (my_env, "lkmaya");
-    unset_command (my_env, "wiiw");
-    // export_command (my_env, NULL);
-    free_all (kmi, words);
+    // unset_command (my_env, "lkmaya");
+    printf ("kmiiiiÏ\n");
+    unset_command (my_env, "COMMAND_MODE");
+    export_command (my_env, NULL);
+    printf ("kmiiiiÏ\n");
+    // free_all (kmi, words);
+    printf ("kmiiiiÏ\n");
     ft_free_contnue (my_env);
     ft_free_list (my_env);
 }
