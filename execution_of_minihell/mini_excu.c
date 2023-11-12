@@ -22,12 +22,12 @@ int main(int ac, char **av, char **env)
     (void) ac;
     (void) av;
     (void) env;
-    atexit (mr);
+    // atexit (mr);
     // char *st;
     // char *st = av[1];
-    // char st[1000] = "    wiiw=lafafa  wiiw=  wiiw wiiw=14";//lkmaya  wiiw wiiw=14    " ; // ___=hhh       mouad=11 mouad
-    // char **kmi = ft_split (st, ' ');  
-    // int words = num_of_word (st, ' ');
+    char st[1000] = "  COLORTERM    COMMAND_MODE    __CF_USER_TEXT_ENCODING  GIT_ASKPASS  ";//lkmaya  wiiw wiiw=14    " ; // ___=hhh       mouad=11 mouad
+    char **kmi = ft_split (st, ' ');  
+    int words = num_of_word (st, ' ');
     t_node **my_env = take_env (env);
     (void) my_env;
     // (void) words;
@@ -46,10 +46,10 @@ int main(int ac, char **av, char **env)
     export_command (my_env, NULL);
     // unset_command (my_env, "lkmaya");
     printf ("kmiiiiÏ\n");
-    unset_command (my_env, "COMMAND_MODE");
-    export_command (my_env, NULL);
+    unset_command (my_env, kmi);
+    // export_command (my_env, NULL);
     printf ("kmiiiiÏ\n");
-    // free_all (kmi, words);
+    free_all (kmi, words);
     printf ("kmiiiiÏ\n");
     ft_free_contnue (my_env);
     ft_free_list (my_env);
