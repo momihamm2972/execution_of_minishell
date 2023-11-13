@@ -25,7 +25,7 @@ int main(int ac, char **av, char **env)
     // atexit (mr);
     // char *st;
     // char *st = av[1];
-    char st[1000] = "  COLORTERM    COMMAND_MODE    __CF_USER_TEXT_ENCODING  GIT_ASKPASS  ";//lkmaya  wiiw wiiw=14    " ; // ___=hhh       mouad=11 mouad
+    char st[1000] = " ORIGINAL_XDG_CURRENT_DESKTOP        _        ZDOTDIR     XPC_SERVICE_NAME      XPC_FLAGS      VSCODE_INJECTION  VSCODE_GIT_IPC_HANDLE  VSCODE_GIT_ASKPASS_NODE  VSCODE_GIT_ASKPASS_MAIN    VSCODE_GIT_ASKPASS_EXTRA_ARGS  USER  USER_ZDOTDIR  TERM_PROGRAM   TMPDIR    TERM_PROGRAM_VERSION                     COLORTERM  SHLVL  SSH_AUTH_SOCK       TERM             PWD   SHELL    PATH  HOME LANG GIT_ASKPASS OLDPWD MallocNanoZone LOGNAME " ; // ___=hhh       mouad=11 mouad
     char **kmi = ft_split (st, ' ');  
     int words = num_of_word (st, ' ');
     t_node **my_env = take_env (env);
@@ -45,12 +45,15 @@ int main(int ac, char **av, char **env)
     // print_export (my_env);
     export_command (my_env, NULL);
     // unset_command (my_env, "lkmaya");
-    printf ("kmiiiiÏ\n");
+    printf ("kmii*iiÏ\n");
     unset_command (my_env, kmi);
+    printf ("jflaksfl\n");
+    export_command (my_env, NULL);
     // export_command (my_env, NULL);
-    printf ("kmiiiiÏ\n");
+    printf ("kmiii|iÏ\n");
     free_all (kmi, words);
-    printf ("kmiiiiÏ\n");
+    printf ("km>iiiiÏ\n");
     ft_free_contnue (my_env);
+    printf ("km@@iiiiÏ\n");
     ft_free_list (my_env);
 }

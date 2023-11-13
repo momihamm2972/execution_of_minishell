@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:04:50 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/13 00:50:18 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:50:19 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,13 @@ int uneset_head(t_node **env, char *str)
     return (1);
 }
 
+int	empty_list(t_node **list)
+{
+	if (!(*list))
+		return (1);
+	return (0);
+}
+
 void    unset_command(t_node **env, char **str)
 {
     t_node  *ptr;
@@ -79,35 +86,35 @@ void    unset_command(t_node **env, char **str)
     row = 0;
     while (str[row])
     {
-        ptr = (*env);
-        if (uneset_head(env, str[row]) == 1)
+        if (uneset_head(env, str[row]) == 0)
         {
             printf ("***************************\n");
-            // ptr = (*env);
+            ptr = (*env);
         }
         else
         {
+            ptr = (*env);
             while (ptr)
             {
-                // if (unset_error (str[row]) == 1)
-                //     break;
-                // printf ("<%s>\n", str[row]);
                 if (ptr->next && ft_strcmp (ptr->next->key, str[row]) == 0)
                 {
-                    printf ("<%s>           <%s>\n", ptr->key,str[row]);
+                    printf ("<%s>           <%s>\n", ptr->next->key,str[row]);
                     rm = ptr->next;
                     if (rm->next == NULL)
                     {
                         ptr->next = NULL;
                         ft_free_only_one_node (rm);
-                        return ;
+                        break ;
                     }
-                    ft_free_only_one_node (rm);
                     ptr->next = ptr->next->next;
+                    ft_free_only_one_node (rm);
                 }
                 ptr = ptr->next;
             }
         }
         row++;
     }
+    // print_export (env);
+	if (empty_list (env) == 1)
+		free (env);
 }
