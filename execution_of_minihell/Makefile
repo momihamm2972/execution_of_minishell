@@ -6,7 +6,7 @@
 #    By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 03:15:02 by momihamm          #+#    #+#              #
-#    Updated: 2023/11/13 16:59:38 by momihamm         ###   ########.fr        #
+#    Updated: 2023/11/13 17:26:32 by momihamm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ FILES = mini_excu.c\
 		export_command3.c\
 		export_command4.c\
 		unset.c\
+		unset1.c\
 		split.c
 
 OBJ = $(FILES:.c=.o)
