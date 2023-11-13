@@ -25,8 +25,10 @@ int main(int ac, char **av, char **env)
     // atexit (mr);
     // char *st;
     // char *st = av[1];
-    char st[1000] = " ORIGINAL_XDG_CURRENT_DESKTOP        _        ZDOTDIR     XPC_SERVICE_NAME      XPC_FLAGS      VSCODE_INJECTION  VSCODE_GIT_IPC_HANDLE  VSCODE_GIT_ASKPASS_NODE  VSCODE_GIT_ASKPASS_MAIN    VSCODE_GIT_ASKPASS_EXTRA_ARGS  USER  USER_ZDOTDIR  TERM_PROGRAM   TMPDIR    TERM_PROGRAM_VERSION                     COLORTERM  SHLVL  SSH_AUTH_SOCK       TERM             PWD   SHELL    PATH  HOME LANG GIT_ASKPASS OLDPWD MallocNanoZone LOGNAME " ; // ___=hhh       mouad=11 mouad
+    char st[1000] = " tabi3a=m9wed        mouad=$$$   " ; // ___=hhh       mouad=11 mouad
+    char fm[1000] = " ORIGINAL_XDG_CURRENT_DESKTOP        COLORTERM  *kdfi TERM   tabi3a " ; // ___=hhh       mouad=11 mouad
     char **kmi = ft_split (st, ' ');  
+    char **zb = ft_split (fm, ' ');
     int words = num_of_word (st, ' ');
     t_node **my_env = take_env (env);
     (void) my_env;
@@ -41,19 +43,19 @@ int main(int ac, char **av, char **env)
     //     dor = dor->next;
     //     i++;
     // }
-    // export_command (my_env, kmi);
+    export_command (my_env, kmi);
     // print_export (my_env);
     export_command (my_env, NULL);
     // unset_command (my_env, "lkmaya");
-    printf ("kmii*iiÏ\n");
-    unset_command (my_env, kmi);
-    printf ("jflaksfl\n");
+    // printf ("kmii*iiÏ\n");
+    unset_command (my_env, zb);
+    printf ("\n**********************jflaksfl***************************\n\n");
     export_command (my_env, NULL);
     // export_command (my_env, NULL);
-    printf ("kmiii|iÏ\n");
+    // printf ("kmiii|iÏ\n");
     free_all (kmi, words);
-    printf ("km>iiiiÏ\n");
+    // printf ("km>iiiiÏ\n");
     ft_free_contnue (my_env);
-    printf ("km@@iiiiÏ\n");
+    // printf ("km@@iiiiÏ\n");
     ft_free_list (my_env);
 }

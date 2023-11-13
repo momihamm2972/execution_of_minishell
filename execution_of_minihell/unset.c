@@ -6,45 +6,11 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:04:50 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/13 17:26:20 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:40:35 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_excu.h"
-
-// void	unset_out_error(char *str)
-// {
-// 	printf (" unset: `%s': not a valid identifier\n", str);
-// }
-
-// int	unset_error(char *test)
-// {
-// 	int	indx;
-
-// 	indx = 0;
-// 	if (is_num_sp (test[indx]) == 1)
-// 	{
-// 		unset_out_error (test);
-// 		return (1);
-// 	}
-// 	while (test[++indx])
-// 	{
-// 		if (whitout_plus(test[indx]) == 2)
-// 		{
-// 			if (test[indx + 1] != '\0')
-// 			{
-// 				unset_out_error (test);
-// 				return (1);
-// 			}
-// 		}
-// 		else if (whitout_plus(test[indx]) == 1)
-// 		{
-// 			unset_out_error (test);
-// 			return (1);
-// 		}
-// 	}
-// 	return (0);
-// }
 
 void	ft_free_only_one_node(t_node *node)
 {
@@ -81,13 +47,13 @@ void	unset_key(t_node **env, char *str)
 	t_node	*ptr;
 	t_node	*rm;
 
-	if (!env)
-		return ;
-	if (!(*env))
+	if (!env || !(*env))
 		return ;
 	ptr = (*env);
 	while (ptr)
 	{
+		if (unset_error (str) == 1)
+            break;
 		if (ptr->next && ft_strcmp (ptr->next->key, str) == 0)
 		{
 			rm = ptr->next;
