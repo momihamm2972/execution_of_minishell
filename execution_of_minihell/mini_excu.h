@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/13 17:39:53 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/14 15:01:51 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct node
     struct node *next;
 }t_node;
 
-/*##################################FUNCTOINS##################################*/
+/*##################################FUNCTOINS#################################*/
 t_node	**take_env(char **env);
 void	print_export(t_node **list);
 char	*ft_frontcpy_p(char *dst, char *src, char del);
@@ -57,7 +57,7 @@ void	intial(t_node *new, char *str);
 void    unset_command(t_node **env, char **str);
 int	unset_error(char *test);
 void	unset_out_error(char *str);
-
+void    cd_command (t_node **env, char **arg);
 
 
 
@@ -100,6 +100,6 @@ void	print_export(t_node **list);
 t_node	*take_key_vlu(char *str);
 t_node	*check_is_exist(t_node **list, char *var);
 
-/*#############################################################################*/
+/*############################################################################*/
 
 #endif
