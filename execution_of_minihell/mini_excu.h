@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/14 15:01:51 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/15 21:14:40 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,11 @@ void    unset_command(t_node **env, char **str);
 int	unset_error(char *test);
 void	unset_out_error(char *str);
 void    cd_command (t_node **env, char **arg);
+t_node	*get_node(t_node **list, char *str);
 
+void	print_oldpwd(t_node **my_env);
 
-
+int	arg_path(char *str);
 
 char	*ft_strjoin(char const *s1, char const *s2);
 // t_node	*make_po(char *exp);
