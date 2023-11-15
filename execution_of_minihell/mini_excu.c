@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/14 18:07:38 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/15 18:13:55 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(int ac, char **av, char **env)
     (void) av;
     (void) env;
     t_node **kmi = take_env (env);
-    char **wi = ft_split (" ~push ", ' ');
+    char **wi = ft_split (" ../../.. ", ' ');
 
     cd_command (kmi, wi);
     // while(1);  
