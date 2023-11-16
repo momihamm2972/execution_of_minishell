@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/15 21:14:40 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/16 19:03:08 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdbool.h>
+
+/*###########################GOLOBAL VARIABLE#################################*/
+int status;
+// extern int status;
+// ssize_t byte;
+/*############################################################################*/
 
 typedef struct node
 {
@@ -59,9 +65,9 @@ int	unset_error(char *test);
 void	unset_out_error(char *str);
 void    cd_command (t_node **env, char **arg);
 t_node	*get_node(t_node **list, char *str);
-
+void    ft_exit(char **matrix);
 void	print_oldpwd(t_node **my_env);
-
+long long	ft_atoi(const char *str);
 int	arg_path(char *str);
 
 char	*ft_strjoin(char const *s1, char const *s2);
