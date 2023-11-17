@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/16 19:03:08 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/17 18:30:13 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void    cd_command (t_node **env, char **arg);
 t_node	*get_node(t_node **list, char *str);
 void    ft_exit(char **matrix);
 void	print_oldpwd(t_node **my_env);
-long long	ft_atoi(const char *str);
+long long	ft_atoi(char *str);
 int	arg_path(char *str);
 
 char	*ft_strjoin(char const *s1, char const *s2);

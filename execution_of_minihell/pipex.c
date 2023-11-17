@@ -1,31 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_excu.c                                        :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/17 22:36:36 by momihamm         ###   ########.fr       */
+/*   Created: 2023/11/17 23:51:43 by momihamm          #+#    #+#             */
+/*   Updated: 2023/11/17 23:51:44 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
-
-void    mr()
-{
-    system ("leaks minihell");
-}
-
-int main(int ac, char **av, char **env)
-{
-    (void) ac;
-    (void) av;
-    (void) env;
-    // atexit (mr);
-    char **wi = ft_split (" 922  ", ' ');
-    int word = num_of_word (" 9223372036854775808  ", ' ');
-    ft_exit (wi);
-    printf ("+++%d+++\n", status);
-    free_all (wi, word);
-}
