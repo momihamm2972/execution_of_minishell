@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/18 11:37:06 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/18 20:34:36 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int main(int ac, char **av, char **env)
     (void) av;
     (void) env;
     // atexit (mr);
-    char **wi = ft_split (" -92233df72036854775807 ", ' ');
-    int word = num_of_word (" 9223372036854775808  ", ' ');
-    ft_exit (wi);
-    printf ("+++%d+++\n", status);
+    char **wi = ft_split (" -n -nnnnnnnnnnn -nnnnnnnnnnnnnnnnnnnnnnn kmi -nn ", ' ');
+    int word = num_of_word (" -n -nnnnnnnnnnn -nnnnnnnnnnnnnnnnnnnnnnn kmi -nnnnnnnnnnnn ", ' ');
+    my_echo_n (wi);
+    // printf ("+++%d+++\n", status);
     free_all (wi, word);
 }

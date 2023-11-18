@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/17 18:30:13 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:42:59 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	*ft_memcpy(void *to, const void *from, size_t len);
 size_t	ft_strlen(char *s);
 // int	check_is_exist(t_node **list, char *var);
 void	*ft_calloc(size_t count, size_t size);
-void    my_echo_n(char *mess);
+void    my_echo_n(char **argum);
 void    env_command(char **env);
 char	*ft_frontcpy(char *dst, char *src, char del);
 char	*ft_backcpy(char *dst, char *src, char del);
