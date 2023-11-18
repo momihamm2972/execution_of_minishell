@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 23:39:16 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/17 22:18:18 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/18 11:39:26 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,10 @@ void	*ft_memmove(void *to, void *from, size_t byte)
 		while (byte--)
 		{
 			dst[byte] = src[byte];
-		}	
+		}
 	}
 	return (dst);
 }
-
-// int	take_byte(int num)
-// {
-// 	unsigned char	bit;
-// 	int				indx;
-
-// 	indx = 0;
-// 	while (indx < 7)
-// }
 
 int	is_word(char *str)
 {
@@ -58,7 +49,7 @@ int	is_word(char *str)
 
 void	exit_status(size_t num)
 {
-	if (num >=0 && num <= 256)
+	if (num >= 0 && num <= 256)
 	{
 		printf ("exit\n");
 		status = num;
@@ -67,7 +58,6 @@ void	exit_status(size_t num)
 	{
 		printf ("exit\n");
 		status = num % 256;
-		// status = 91;
 	}
 }
 
@@ -90,7 +80,6 @@ int	num_arg_of_exit(char *str)
 void	ft_exit(char **matrix)
 {
 	int			row;
-	// long long	arg;
 
 	if (!matrix || !matrix[0])
 	{
@@ -107,19 +96,9 @@ void	ft_exit(char **matrix)
 			printf ("exit\n");
 			printf (" exit: %s: numeric argument required\n", matrix [row]);
 			status = 255;
-			return ; 
+			return ;
 		}
 		else
-		{
 			num_arg_of_exit (matrix[row]);
-			// arg = ft_atoi (matrix[row]);
-			// if (arg == -1)
-			// {
-			// 	printf (" exit: %s: numeric argument| required\n", matrix[row]);
-			// 	status = 255;
-			// 	return ;
-			// }
-			// exit_status (arg);
-		}
 	}
 }
