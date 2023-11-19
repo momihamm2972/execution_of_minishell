@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:55:19 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/15 22:21:48 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:55:57 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	update_env(t_node **my_env)
 
 	old = get_node (my_env, "OLDPWD");
 	new = get_node (my_env, "PWD");
-	// if ()
 	ptr = old->value_of_the_key;
 	old->value_of_the_key = new->value_of_the_key;
 	free (ptr);

@@ -1,15 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   eroro.c                                            :+:      :+:    :+:   */
+/*   tools1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 21:14:45 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/15 15:44:21 by momihamm         ###   ########.fr       */
+/*   Created: 2023/11/19 17:23:48 by momihamm          #+#    #+#             */
+/*   Updated: 2023/11/19 17:24:20 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-bash-3.2$ cd - Desktop  fsf
-bash-3.2$ cd - Desktop 
-  
+#include "mini_excu.h"
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void	*ptr;
+	char	*str;
+	size_t	indx;
+
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	str = (char *)ptr;
+	indx = 0;
+	while (indx < (count * size))
+		str[indx++] = 0;
+	return (ptr);
+}

@@ -6,92 +6,87 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:46:13 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/15 16:44:25 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:21:36 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_excu.h"
 
-int ft_len(char *str, char c)
-{
-	int len;
+// int	ft_len(char *str, char c)
+// {
+// 	int	len;
 
-	len = 0;
-	while (str[len] && str[len] != c)
-		len++;
-	return (len);
-}
+// 	len = 0;
+// 	while (str[len] && str[len] != c)
+// 		len++;
+// 	return (len);
+// }
 
-int	is_ther_the_win_char(char *str, char c, int len)
-{
-	int indx;
+// int	is_ther_the_win_char(char *str, char c, int len)
+// {
+// 	int	indx;
 
-	indx = 0;
-	while (indx < len && str[indx])
-	{
-		if (str[indx] == c)
-			return 1;
-		indx++;
-	}
-	return (0);
-}
+// 	indx = 0;
+// 	while (indx < len && str[indx])
+// 	{
+// 		if (str[indx] == c)
+// 			return (1);
+// 		indx++;
+// 	}
+// 	return (0);
+// }
 
-char	*ft_frontcpy(char *dst, char *src, char del)
-{
-	int	indx;
+// char	*ft_frontcpy(char *dst, char *src, char del)
+// {
+// 	int	indx;
 
-	if (!src)
-		return (NULL);
-	indx = 0;
-	if (!dst)
-		dst = ft_calloc (ft_len (src, del) + 1, sizeof (char));
-	if (!dst)
-		return (NULL);
-	while (src[indx] && src[indx] != del)
-	{
-			dst[indx] = src[indx];
-			indx++;
-	}
-	dst[indx] = '\0';
-	return (dst);
-}
+// 	if (!src)
+// 		return (NULL);
+// 	indx = 0;
+// 	if (!dst)
+// 		dst = ft_calloc (ft_len (src, del) + 1, sizeof (char));
+// 	if (!dst)
+// 		return (NULL);
+// 	while (src[indx] && src[indx] != del)
+// 	{
+// 		dst[indx] = src[indx];
+// 		indx++;
+// 	}
+// 	dst[indx] = '\0';
+// 	return (dst);
+// }
 
-char	*ft_backcpy(char *dst, char *src, char del)
-{
-	int	indx;
-	int indj;
-	int len;
+// char	*ft_backcpy(char *dst, char *src, char del)
+// {
+// 	int	indx;
+// 	int	indj;
+// 	int	len;
 
-
-	if (!src)
-		return (NULL);
-	if (is_ther_the_win_char(src, del, ft_strlen (src)) == 0)
-		return (NULL);
-	indx = 0;
-	indj = 0;
-	len = ft_strlen (src) - ft_len (src, del);
-	if (!dst)
-		dst = ft_calloc (len + 1, sizeof (char));
-	while (src[indx] && src[indx] != del)
-		indx++;
-	if (src[indx] == del)
-	{
-		indx++;
-		while (src[indx])
-		{
-				dst[indj] = src[indx];
-				indx++;
-				indj++;
-		}
-		dst[indj] = '\0';
-	}
-	return (dst);
-}
+// 	if (!src)
+// 		return (NULL);
+// 	if (is_ther_the_win_char(src, del, ft_strlen (src)) == 0)
+// 		return (NULL);
+// 	indx = 0;
+// 	indj = 0;
+// 	len = ft_strlen (src) - ft_len (src, del);
+// 	if (!dst)
+// 		dst = ft_calloc (len + 1, sizeof (char));
+// 	while (src[indx] && src[indx] != del)
+// 		indx++;
+// 	if (src[indx] == del)
+// 	{
+// 		indx++;
+// 		while (src[indx])
+// 			dst[indj++] = src[indx++];
+// 		dst[indj] = '\0';
+// 	}
+// 	return (dst);
+// }
 
 t_node	**take_env(char **env)
 {
-	t_node **list;
-    int	row;
+	t_node	**list;
+	int		row;
 
 	list = malloc (sizeof (t_node *));
 	(*list) = NULL;
@@ -106,7 +101,7 @@ t_node	**take_env(char **env)
 
 void	print_list(t_node **list)
 {
-	t_node *ptr;
+	t_node	*ptr;
 
 	ptr = (*list);
 	while (ptr)
@@ -115,8 +110,6 @@ void	print_list(t_node **list)
 		ptr = ptr->next;
 	}
 }
-
-
 
 void	ft_free_contnue(t_node **lst)
 {
@@ -154,10 +147,12 @@ void	ft_free_list(t_node **list)
 	free (list);
 }
 
-void    env_command(char **env)
+void	env_command(char **env)
 {
-	t_node **list;
+	t_node	**list;
 
+	if (!env || !env[0])
+		return ;
 	list = take_env (env);
 	print_list (list);
 	ft_free_contnue (list);

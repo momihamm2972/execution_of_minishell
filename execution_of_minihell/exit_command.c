@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 23:39:16 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/18 11:39:26 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 17:25:12 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void	exit_status(size_t num)
 	if (num >= 0 && num <= 256)
 	{
 		printf ("exit\n");
-		status = num;
+		// status = num;
 	}
 	if (num > 256)
 	{
 		printf ("exit\n");
-		status = num % 256;
+		// status = num % 256;
 	}
 }
 
@@ -68,8 +68,8 @@ int	num_arg_of_exit(char *str)
 	arg = ft_atoi (str);
 	if (arg == -1)
 	{
-		printf (" exit: %s: numeric argument| required\n", str);
-		status = 255;
+		printf (" exit: %s: numeric argument required\n", str);
+		// status = 255;
 		return (1);
 		// exit (0);
 	}
@@ -83,7 +83,7 @@ void	ft_exit(char **matrix)
 
 	if (!matrix || !matrix[0])
 	{
-		status = 0;
+		// status = 0;
 		printf ("exit\n");
 		// exit(0);
 		return ;
@@ -95,8 +95,9 @@ void	ft_exit(char **matrix)
 		{
 			printf ("exit\n");
 			printf (" exit: %s: numeric argument required\n", matrix [row]);
-			status = 255;
+			// status = 255;
 			return ;
+			// exit (0);
 		}
 		else
 			num_arg_of_exit (matrix[row]);

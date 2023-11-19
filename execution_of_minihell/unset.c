@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 16:04:50 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/13 17:40:35 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:49:54 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	unset_key(t_node **env, char *str)
 	while (ptr)
 	{
 		if (unset_error (str) == 1)
-            break;
+			break ;
 		if (ptr->next && ft_strcmp (ptr->next->key, str) == 0)
 		{
 			rm = ptr->next;

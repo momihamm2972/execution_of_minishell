@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:45:30 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/10 18:19:37 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:14:42 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 t_node	*ft_lstnew(char *env_val)
 {
-	(void) env_val;
 	t_node	*head;
 
 	head = malloc (sizeof (t_node));
@@ -70,12 +69,12 @@ t_node	*ft_lstlast(t_node **lst)
 void	ft_lstadd_back(t_node **lst, t_node *new)
 {
 	t_node	*the_last;
+
 	if ((*lst) == NULL)
 	{
 		(*lst) = new;
 		return ;
 	}
-
 	the_last = ft_lstlast(lst);
 	the_last->next = new;
 }

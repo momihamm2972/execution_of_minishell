@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 17:54:27 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/17 18:53:55 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 16:49:31 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ long long	over_flow(long long num)
 
 long long	ft_atoi(char *str)
 {
-	unsigned	long long	i_r_s[4];
+	unsigned long long	i_r_s[4];
 
 	i_r_s[0] = -1;
 	i_r_s[1] = 0;
