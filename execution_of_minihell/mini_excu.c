@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 23:52:05 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/20 00:13:42 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,3 +50,14 @@ int main(int ac, char **av, char **env)
     ft_free_list (kmi);
     // env_command (env);
 }
+
+
+
+
+
+
+
+
+
+
+*****update env fach katreje l dossi l9eble makan updatich*****
