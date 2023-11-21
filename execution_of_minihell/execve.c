@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 02:14:28 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/21 14:18:21 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:21:59 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ char	**make_list_arr(t_node **list)
 	arr = (char **) ft_calloc (ft_lstsize ((*list)) + 1, sizeof (char *));
 	if (!arr)
 		return (NULL);
-	printf ("kmi\n");
+	printf ("kmiss\n");
 	row = 0;
 	while (add)
 	{
 		ptr = add_plus(add->key);
 		arr[row] = ft_strjoin (ptr, add->value_of_the_key);
 		free (ptr);
-		printf ("<%s>\n", arr[row]);
+		// printf ("<%s>\n", arr[row]);
 		add = add->next;
 		row++;
 	}

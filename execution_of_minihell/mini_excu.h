@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/21 14:18:31 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/21 18:47:10 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,9 @@ char	*add_plus(char *str);
 void	print_2d(char **arr);
 char	**make_list_arr(t_node **list);
 void	ft_free_matrix_contnt(char **arr);
+char    **find_path(t_node *an_node);
+void    		let_exec_command(char **path, char **command, char **envment);
+char    *ft_path(char *zero, char *cmd);
 
 
 
