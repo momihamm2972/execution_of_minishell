@@ -6,7 +6,7 @@
 #    By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 03:15:02 by momihamm          #+#    #+#              #
-#    Updated: 2023/11/19 21:36:09 by momihamm         ###   ########.fr        #
+#    Updated: 2023/11/21 02:36:12 by momihamm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ FILES = mini_excu.c\
 		unset1.c\
 		split.c\
 		pipex.c\
+		execve.c\
 		exit_command.c
 
 OBJ = $(FILES:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 23:34:53 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/21 02:44:27 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,16 @@ int			ft_len(char *str, char c);
 int			ft_isdigit(int c);
 long long	ft_atoi(char *str);
 size_t		ft_strlen(char *s);
+
+
+
+
+char	*add_plus(char *str);
+
+void	print_2D(char **arr);
+char	**make_list_arr(t_node **list);
+
+
 
 /*############################################################################*/
 
