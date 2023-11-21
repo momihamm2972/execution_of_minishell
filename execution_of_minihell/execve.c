@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 02:14:28 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/21 02:49:57 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:18:21 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,31 +37,46 @@ char	*add_plus(char *str)
 char	**make_list_arr(t_node **list)
 {
 	t_node	*add;
-    char	**arr;
-	// char	*ptr;
+	char	**arr;
+	char	*ptr;
 	int		row;
 
-	if (list || (*list))
+	if (!list || !(*list))
 		return (NULL);
 	add = (*list);
-	arr = (char **) ft_calloc (ft_lstsize ((*list)), sizeof (char *));
-	if (arr)
+	arr = (char **) ft_calloc (ft_lstsize ((*list)) + 1, sizeof (char *));
+	if (!arr)
 		return (NULL);
+	printf ("kmi\n");
 	row = 0;
 	while (add)
 	{
-		arr[row] = ft_strjoin (add_plus(add->key),add->value_of_the_key);
+		ptr = add_plus(add->key);
+		arr[row] = ft_strjoin (ptr, add->value_of_the_key);
+		free (ptr);
 		printf ("<%s>\n", arr[row]);
 		add = add->next;
 		row++;
 	}
-	arr[row] = NULL;
 	return (arr);
 }
 
-void	print_2D(char **arr)
+void	ft_free_matrix_contnt(char **arr)
 {
-	int indx;
+	int	row;
+
+	row = 0;
+	while (arr[row])
+	{
+		free (arr[row]);
+		row++;
+	}
+	free (arr);
+}
+
+void	print_2d(char **arr)
+{
+	int	indx;
 
 	indx = 0;
 	while (arr[indx])
