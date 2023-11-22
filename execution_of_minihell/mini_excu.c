@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/22 03:58:03 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:57:27 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,9 @@ int main(int ac, char **av, char **env)
     (void) ac;
     (void) av;
     (void) env;
-    // atexit (mr);
-    char **split = ft_split (" ls -al ", ' ');
-    t_node **kmi = take_env (env);
+
     int fd = open ("lkmaya.txt", O_WRONLY | O_CREAT , 0777);
-    printf ("kmidf\n");
-    free_all (split, num_of_word (" ls -al ", ' '));
-    ft_free_matrix_contnt (dd);
-    ft_free_contnue (kmi);
-    ft_free_list (kmi);
+    out_file (fd, "lkmaya.txt", env);
 }
 
 

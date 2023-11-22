@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/22 03:31:47 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/22 22:58:21 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,10 @@ char    **find_path(t_node *an_node);
 void    		let_exec_command(char **path, char **command, char **envment);
 char    *ft_path(char *zero, char *cmd);
 
+
+
+
+int	out_file(int fd, char *name, char **env);
 
 
 /*############################################################################*/
