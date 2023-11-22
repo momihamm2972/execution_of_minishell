@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/21 18:47:10 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/22 03:31:47 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdbool.h>
+
+# include <limits.h>
+# include <fcntl.h>
 
 /*###########################GOLOBAL VARIABLE#################################*/
 
