@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/23 02:33:26 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/23 06:24:22 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char    *ft_path(char *zero, char *cmd);
 
 
 
-int	out_file(int fd, char **env);
+int	out_file(int fd, char **env, char **cmd);
 
 
 /*############################################################################*/
