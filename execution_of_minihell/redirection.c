@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 00:02:53 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/23 05:47:35 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/23 20:56:05 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	out_file(int fd, char **env, char **cmd)
 {
 	pid_t pid;
 
-	if (fd == -1)
+	if (fd == -2)
 		return (-1);
 	pid = fork ();
 	if (pid == 0)
 	{
-		dup2 (fd, 1);
-		close (fd);
+		// dup2 (fd, 1);
+		// close (fd);q
 		execve ("/bin/ls", cmd, env);
 	}
 	return (0);

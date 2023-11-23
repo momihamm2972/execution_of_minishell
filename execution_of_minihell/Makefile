@@ -6,13 +6,13 @@
 #    By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 03:15:02 by momihamm          #+#    #+#              #
-#    Updated: 2023/11/22 03:30:45 by momihamm         ###   ########.fr        #
+#    Updated: 2023/11/23 21:20:46 by momihamm         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minihell
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+FLAGS = 
 FILES = mini_excu.c\
 		pwd_command.c\
 		cd_command.c\
