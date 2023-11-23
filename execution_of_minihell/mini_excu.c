@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:56:43 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/22 22:57:27 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/23 02:34:49 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int main(int ac, char **av, char **env)
     (void) av;
     (void) env;
 
-    int fd = open ("lkmaya.txt", O_WRONLY | O_CREAT , 0777);
-    out_file (fd, "lkmaya.txt", env);
+    int fd = open ("lkmaya.txt", O_WRONLY | O_CREAT | O_TRUNC , 0777);
+    out_file (fd, env);
 }
 
 
