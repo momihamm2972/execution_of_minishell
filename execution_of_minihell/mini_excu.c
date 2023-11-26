@@ -56,12 +56,25 @@ void    bipa(int *files, t_tokens **kmi, char **env)
     {
         printf ("child\n");
         close(files[0]);
-        dup2 (files[1], 1);
+        dup2 (files[1], STDOUT_FILENO);
+        close (files[1]);
         execve ("/bin/ls", (*kmi)->options, env);
         // close
     }
     else
         printf ("parent\n");
+    pid = fork ();
+    if (pid == 0)
+    {
+        printf ("child1\n");
+        close(files[1]);
+        dup2 (files[0], STDIN_FILENO);
+        close (files[0]);
+        execve ("/usr/bin/wc", (*kmi)->next->options, env);
+        // close
+    }
+    else
+        printf ("parent1\n");
 }
 
 int main(int ac, char **av, char **env)
@@ -75,10 +88,10 @@ int main(int ac, char **av, char **env)
     lkmaya = malloc (sizeof (t_tokens));
     chto = malloc (sizeof (t_tokens));
     lkmaya->next = chto;
-    lkmaya->input = ft_strdup ("ls -la");
+    // lkmaya->input = ft_strdup ("ls -la");
     lkmaya->cmd = ft_strdup ("ls");
-    lkmaya->options = ft_split ("ls -ls", ' ');
-    chto->input = ft_strdup ("wc -l");
+    lkmaya->options = ft_split ("ls -la", ' ');
+    // chto->input = ft_strdup ("wc -l");
     chto->cmd = ft_strdup ("wc");
     chto->options = ft_split ("wc -l", ' ');
     int files[2];
