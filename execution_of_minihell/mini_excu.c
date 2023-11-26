@@ -47,17 +47,20 @@ int execcmd(int fd_in, int fd_out, char **env, char **options, char *in_file, ch
 void    bipa(int *files, t_tokens **kmi, char **env)
 {
     printf ("%d\t%d\n",files[0], files[1]);
-    if (pipe (files) == 0)
-        printf ("kmi\n");
-    else
-        printf ("7amid\n");
-    // t_tokens *ptr;
+    t_tokens *ptr;
 
-    // ptr = (*kmi);
-    // while (ptr)
-    // {
-    //     if (ptr->next == NULL)
-    //         return;
+    ptr = (*kmi);
+    while (ptr)
+    {
+        if (pipe (files) == 0)
+            printf ("kmi\n");
+        else
+            printf ("7amid\n");
+        // if (ptr->next == NULL)
+        // {
+        //     printf ("hide && seek%s\n",ptr->options[0]);
+        //     return;
+        // }
         pid_t pid = fork();
         if (pid == 0)
         {
@@ -65,7 +68,13 @@ void    bipa(int *files, t_tokens **kmi, char **env)
             close(files[0]);
             dup2 (files[1], STDOUT_FILENO);
             close (files[1]);
-            execve ("/bin/ls", (*kmi)->options, env);
+            if (ptr->o_fd == 5)
+            {
+                ptr->o_fd =88;
+                execve ("/bin/ls", ptr->options, env);
+            }
+            else
+                execve ("/usr/bin/wc", ptr->options, env);
             // close
         }
         else
@@ -78,15 +87,16 @@ void    bipa(int *files, t_tokens **kmi, char **env)
             dup2 (files[0], STDIN_FILENO);
             close (files[0]);
             if ((*kmi)->i_fd == 91)
-                execve ("/usr/bin/tr", (*kmi)->next->options, env);
+                execve ("/usr/bin/wc", ptr->next->options, env);
             else
-                execve ("/usr/bin/wc", (*kmi)->next->options, env);
+                execve ("/usr/bin/tr", ptr->next->options, env);
             // close
         }
         else
             printf ("parent1\n");
-    //     ptr = ptr->next;
-    // }
+        
+        ptr = ptr->next;
+    }
 }
 
 int main(int ac, char **av, char **env)
@@ -102,7 +112,7 @@ int main(int ac, char **av, char **env)
     chto = malloc (sizeof (t_tokens));
     wiwi = malloc (sizeof (t_tokens));
     lkmaya->next = chto;
-    chto->next = wiwi;
+    chto->next = NULL;
     // lkmaya->input = ft_strdup ("ls -la");
     lkmaya->cmd = ft_strdup ("ls");
     lkmaya->options = ft_split ("ls -la", ' ');
@@ -116,18 +126,23 @@ int main(int ac, char **av, char **env)
     wiwi->i_fd =91;
     lkmaya->i_fd =1;
     chto->i_fd =1;
+    chto->o_fd =5;
+    wiwi->next = NULL;
 
     int files[2];
     files[0] = 1;
     files[1] = open ("money.txt", O_CREAT | O_RDWR, 0777);
-    t_tokens *zaba = lkmaya;
-    while (zaba)
-    {
-        if (zaba->next == NULL)
-            return (0);
-        bipa (files, &zaba, env);
-        zaba = zaba->next;
-    }
+    // t_tokens *zaba = lkmaya;
+    // while (zaba)
+    // {
+    //     if (zaba->next == NULL)
+    //     {
+    //         printf ("************************************************************************<%s>\n", zaba->cmd);
+    //         return (0);
+    //     }
+        bipa (files, &lkmaya , env);
+    //     zaba = zaba->next;
+    // }
 
 }
 
