@@ -44,7 +44,25 @@ int execcmd(int fd_in, int fd_out, char **env, char **options, char *in_file, ch
     return 0;
 }
 
-
+void    bipa(int *files, t_tokens **kmi, char **env)
+{
+    printf ("%d\t%d\n",files[0], files[1]);
+    if (pipe (files) == 0)
+        printf ("kmi\n");
+    else
+        printf ("7amid\n");
+    pid_t pid = fork();
+    if (pid == 0)
+    {
+        printf ("child\n");
+        close(files[0]);
+        dup2 (files[1], 1);
+        execve ("/bin/ls", (*kmi)->options, env);
+        // close
+    }
+    else
+        printf ("parent\n");
+}
 
 int main(int ac, char **av, char **env)
 {
@@ -52,30 +70,21 @@ int main(int ac, char **av, char **env)
     (void) av;
     (void) env;
 
-    char *command = strdup("cat ");
-    char **options = ft_split(command, ' ');
-	char *main_cmd = ft_strdup (options[0]);
-    char *infile = strdup("Makefile"); //null
-    char *outfile = strdup("wc.txt"); // NULL
-
-    int fd_in =  open (infile, O_RDONLY , 0777); // 4
-    int fd_out = open (outfile, O_WRONLY | O_CREAT | O_APPEND , 0777); // 4
-    fd_in = -2;
-    // int in = dup(STDIN_FILENO);
-    // dup2(0, in);
-    // ft_fre
-    // int fd = open ("lkmaya.txt", O_WRONLY | O_CREAT | O_TRUNC  , 0777);
-    // out_file (fd, env, options);
-	execcmd (fd_in, fd_out, env,options, infile, outfile, main_cmd);
-    // task execute this shit
-    // fork : {
-        // 1 - check if there is an infile, (fd_in != -2) ==> yes there is, (fd_in == -2 no there is not)
-    //         1.1 - if (there is) ==> redirect the standard_in to in_file using dup2
-    //     2 - check if there is an infile, (fd_in != -2) ==> yes there is, (fd_in == -2 no there is not)
-    //         2.1 - if (there is) ==> redirect the standard_in to in_file using dup2
-        
-    //     3 - execute using execve()
-    // }
+    t_tokens *lkmaya;
+    t_tokens *chto;
+    lkmaya = malloc (sizeof (t_tokens));
+    chto = malloc (sizeof (t_tokens));
+    lkmaya->next = chto;
+    lkmaya->input = ft_strdup ("ls -la");
+    lkmaya->cmd = ft_strdup ("ls");
+    lkmaya->options = ft_split ("ls -ls", ' ');
+    chto->input = ft_strdup ("wc -l");
+    chto->cmd = ft_strdup ("wc");
+    chto->options = ft_split ("wc -l", ' ');
+    int files[2];
+    files[0] = 1;
+    files[1] = open ("money.txt", O_CREAT | O_RDWR, 0777);
+    bipa (files, &lkmaya, env);
 
 }
 

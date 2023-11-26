@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/23 06:24:22 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/26 00:55:45 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@ typedef struct node
 	int			equl;
 	struct node	*next;
 }t_node;
+
+typedef struct s_tokens
+{
+	char			*input;
+	char			*cmd;
+	char			**options;
+	char			*i_file;
+	char			*o_file;
+	char			*dlmtr;
+	int				i_fd;
+	int				o_fd;
+	int				type_o;
+	int				type_i;
+	struct s_tokens	*next;
+}					t_tokens;
 
 /*##################################FUNCTOINS#################################*/
 t_node		**take_env(char **env);
