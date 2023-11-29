@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/26 00:55:45 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/29 16:02:28 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdbool.h>
+# include <signal.h>
 
 # include <limits.h>
 # include <fcntl.h>
@@ -128,6 +129,7 @@ void	ft_free_matrix_contnt(char **arr);
 char    **find_path(t_node *an_node);
 void    		let_exec_command(char **path, char **command, char **envment);
 char    *ft_path(char *zero, char *cmd);
+char	*add_slash(char *str);
 
 
 
