@@ -6,6 +6,25 @@ void    mr()
     system ("leaks minihell");
 }
 
+ void    ft_free_tokens(t_tokens **cmdline)
+{
+    t_tokens *tmp;
+
+    while (*cmdline)
+    {
+        tmp = *cmdline;
+        *cmdline = (*cmdline)->next;
+        if (tmp)
+        {
+            if (tmp->input)
+                free(tmp->input);
+            if (tmp->options)
+                ft_free_matrix_contnt(tmp->options);
+            free(tmp);
+        }
+    }
+} 
+
 int	ft_lstsize_token(t_tokens *lst)
 {
 	t_tokens	*j;
@@ -24,7 +43,7 @@ int	ft_lstsize_token(t_tokens *lst)
 	return (i);
 }
 
-int execcmd(int fd_in, int fd_out, char **env, char **options, char *in_file, char *out_file, char *main_cmd)
+int execcmd_red(int fd_in, int fd_out, char **env, char **options, char *in_file, char *out_file, char *main_cmd)
 {
     (void) main_cmd;
     (void) in_file;
@@ -84,6 +103,8 @@ char    *get_path_cmand(char **path, char **command)
 void	cmd_in_pipe(t_tokens *list, t_node **my_list, int i_fd, int o_fd, char **env)
 {
 	pid_t	pid;
+	char	**matrix;
+	char	*cmd_path;
 
 	pid = fork ();
 	if (pid == -1)
@@ -103,12 +124,12 @@ void	cmd_in_pipe(t_tokens *list, t_node **my_list, int i_fd, int o_fd, char **en
 			dup2 (o_fd, STDOUT_FILENO);
 			close (o_fd);
 		}
-		// let_exec_command (ft_split (get_node (my_list, "PATH")->value_of_the_key, ':'), list->options, env);
-		char *cmd_path = get_path_cmand(ft_split (get_node (my_list, "PATH")->value_of_the_key, ':'),list->options);
+		matrix = ft_split (get_node (my_list, "PATH")->value_of_the_key, ':');
+		cmd_path = get_path_cmand(matrix,list->options);
 		if (!cmd_path)
 			printf (" command not found: %s\n", list->options[0]);
 		execve (cmd_path, list->options, env);
-		// perror ("execve");
+		ft_free_matrix_contnt (matrix);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -118,7 +139,6 @@ void	cmd_in_pipe(t_tokens *list, t_node **my_list, int i_fd, int o_fd, char **en
 
 void    bipa(t_tokens **list, t_node **my_list, char **env)
 {
-    // printf ("%d\t%d\n",files[0], files[1]);
     t_tokens	*ptr;
 	int			size;
 	int			pipat[ft_lstsize_token((*list)) - 1][2];
@@ -156,12 +176,14 @@ void    bipa(t_tokens **list, t_node **my_list, char **env)
     }
 }
 
+// void	ft_fre
+
 int main(int ac, char **av, char **env)
 {
     (void) ac;
     (void) av;
     (void) env;
-
+	atexit (mr);
     t_tokens *lkmaya;
     t_tokens *chto;
     t_tokens *wiwi;
@@ -171,24 +193,26 @@ int main(int ac, char **av, char **env)
     lkmaya->next = chto;
     chto->next = wiwi;
     // lkmaya->input = ft_strdup ("ls -la");
-    lkmaya->cmd = ft_strdup ("ls");
+    // lkmaya->cmd = ft_strdup ("ls");
     lkmaya->options = ft_split ("ls -la", ' ');
     // chto->input = ft_strdup ("wc -l");
-    chto->cmd = ft_strdup ("wc");
+    // chto->cmd = ft_strdup ("wc");
     chto->options = ft_split ("wc -l", ' ');
 //    
     // chto->input = ft_strdup ("wc -l");
-    wiwi->cmd = ft_strdup ("wc");
+    // wiwi->cmd = ft_strdup ("wc");
     wiwi->options = ft_split ("wc -l", ' ');
     wiwi->i_fd =91;
     lkmaya->i_fd =1;
     chto->i_fd =1;
     chto->o_fd =5;
     wiwi->next = NULL;
-
+	t_node **the_env = take_env (env);
     // int files[2];
-        bipa ( &lkmaya ,take_env (env), env);
-
+        bipa ( &lkmaya ,the_env, env);
+	ft_free_contnue (the_env);
+	ft_free_list (the_env);
+	ft_free_tokens (&lkmaya);
 
 }
 
