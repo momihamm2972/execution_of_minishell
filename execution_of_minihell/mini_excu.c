@@ -43,6 +43,30 @@ int	ft_lstsize_token(t_tokens *lst)
 	return (i);
 }
 
+// int execcmd_red(t_tokens *cmdline, t_node **my_env)
+// {
+//     pid_t pid;
+//     pid = fork();
+//     if (pid == 0)
+//     {
+//         if (cmdline->i_fd != -2)
+//         {
+//             dup2(cmdline->i_fd, STDIN_FILENO);
+//             close(cmdline->i_fd);
+//         }
+//         if (cmdline->o_fd != -2 )
+//         {
+//             dup2(cmdline->o_fd, STDOUT_FILENO);
+//             close(cmdline->o_fd);
+//         }
+//         execve("/bin/cat", cmdline->options, make_list_arr(my_env));
+//         perror("execve");
+//         exit(EXIT_FAILURE);
+//     }
+//     waitpid(pid, NULL, 0);
+//     return 0;
+// }
+
 int execcmd_red(int fd_in, int fd_out, char **env, char **options, char *in_file, char *out_file, char *main_cmd)
 {
     (void) main_cmd;
@@ -50,32 +74,57 @@ int execcmd_red(int fd_in, int fd_out, char **env, char **options, char *in_file
     (void) out_file;
     (void)fd_in;
     (void)fd_out;
+	t_node **my_list = take_env (env);
+	char *slach;
+	char **path;
+	char *ptr = NULL;
+	char *cmd_path = NULL;
+	int row = 0;
+
+	slach = add_slash (options[0]);
+	path = find_path (get_node (my_list, "PATH"));
 
     pid_t pid;
-    pid = fork();
-    if (pid == 0)
-    {
-		if (fd_in != -2)
-        {
-            dup2(fd_in, STDIN_FILENO);
-            close(fd_in);
-        }
-        if (fd_out != -2 )
-        {
-            dup2(fd_out, STDOUT_FILENO);
-            close(fd_out);
-        }
-        execve("/bin/cat", options, env);
-        perror("execve");
-        exit(EXIT_FAILURE);
-    }
+	row = 0;
+	while (path[row])
+	{
+		if (ptr)
+			free (ptr);
+		cmd_path = ft_strjoin (path[row], slach);
+		ptr = cmd_path;
+		if (access (cmd_path, F_OK) == 0)
+		{
+			pid = fork ();
+			if (pid	== 0)
+			{
+				if (fd_in != -2)
+				{
+					dup2(fd_in, STDIN_FILENO);
+					close(fd_in);
+				}
+				if (fd_out != -2 )
+				{
+					dup2(fd_out, STDOUT_FILENO);
+					close(fd_out);
+				}
+				execve(cmd_path, options, env);
+				perror("execve");
+				exit(EXIT_FAILURE);
+			}
+		}
+		row++;
+	}
     waitpid(pid, NULL, 0);
+	ft_free_contnue (my_list);
+	ft_free_list (my_list);
+	ft_free_matrix_contnt (path);
+	free (slach);
+	free (ptr);
     return 0;
 }
 
 char    *get_path_cmand(char **path, char **command)
 {
-	// pid_t	pid;
 	char	*slash;
 	char	*cmd_path;
 	int		row;
@@ -153,21 +202,33 @@ void    bipa(t_tokens **list, t_node **my_list, char **env)
 		indx++;
 	}
 	indx = 0;
+	if ((*list)->i_fd == -2)
+		(*list)->i_fd = STDIN_FILENO;
+	if ((*list)->o_fd == -2)
+		(*list)->o_fd =STDOUT_FILENO;
     while (ptr && indx < size)
     {
 		if (indx == 0)
 		{
+			if (ptr->o_fd == STDOUT_FILENO)
+				ptr->o_fd = pipat[indx][1];
 			cmd_in_pipe (ptr, my_list, 0, pipat[indx][1], env);
 			close (pipat[indx][1]);
 		}
 		else if (indx > 0 && indx < size - 1)
 		{
+			if (ptr->o_fd == STDOUT_FILENO)
+				ptr->o_fd = pipat[indx][1];
+			if (ptr->i_fd == STDIN_FILENO)
+				ptr->i_fd = pipat[indx - 1][0];
 			cmd_in_pipe (ptr, my_list,pipat[indx - 1][0], pipat[indx][1], env);
 			close (pipat[indx - 1][0]);
 			close (pipat[indx][1]);
 		}
 		else
 		{
+			if (ptr->i_fd == STDIN_FILENO)
+				ptr->i_fd = pipat[indx - 1][0];
 			cmd_in_pipe (ptr,my_list, pipat[indx - 1][0], 1, env);
 			close (pipat[indx - 1][0]);
 		}
@@ -191,13 +252,14 @@ int main(int ac, char **av, char **env)
     chto = malloc (sizeof (t_tokens));
     wiwi = malloc (sizeof (t_tokens));
     lkmaya->next = chto;
-    chto->next = wiwi;
+    chto->next = NULL;
     // lkmaya->input = ft_strdup ("ls -la");
     // lkmaya->cmd = ft_strdup ("ls");
+	int 
     lkmaya->options = ft_split ("ls -la", ' ');
     // chto->input = ft_strdup ("wc -l");
     // chto->cmd = ft_strdup ("wc");
-    chto->options = ft_split ("wc -l", ' ');
+    chto->options = ft_split ("grep  p ", ' ');
 //    
     // chto->input = ft_strdup ("wc -l");
     // wiwi->cmd = ft_strdup ("wc");
@@ -213,6 +275,9 @@ int main(int ac, char **av, char **env)
 	ft_free_contnue (the_env);
 	ft_free_list (the_env);
 	ft_free_tokens (&lkmaya);
+	// int in = open ("open.txt", O_CREAT | O_RDWR, 0777);
+	// int out= open ("lkmaya.txt", O_CREAT | O_RDWR , 0777);
+	// execcmd_red (in, out, env, lkmaya->options, "fuch", "kmi", "ls");
 
 }
 

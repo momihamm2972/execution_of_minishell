@@ -6,7 +6,7 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:55:01 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/29 16:02:28 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/30 05:47:38 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ char	*add_slash(char *str);
 
 
 int	out_file(int fd, char **env, char **cmd);
-
+void	ft_free_matrix_contnt(char **arr);
 
 /*############################################################################*/
 
