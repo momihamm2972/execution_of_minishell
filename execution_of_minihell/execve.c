@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   execve.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 02:14:28 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/21 18:21:59 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/12/01 22:57:23 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "minishell.h"
 
 char	*add_plus(char *str)
 {
@@ -44,17 +44,14 @@ char	**make_list_arr(t_node **list)
 	if (!list || !(*list))
 		return (NULL);
 	add = (*list);
-	arr = (char **) ft_calloc (ft_lstsize ((*list)) + 1, sizeof (char *));
+	arr = (char **) ft_calloc (ft_lstsize_k ((*list)) + 1, sizeof (char *));
 	if (!arr)
 		return (NULL);
-	printf ("kmiss\n");
 	row = 0;
 	while (add)
 	{
 		ptr = add_plus(add->key);
 		arr[row] = ft_strjoin (ptr, add->value_of_the_key);
-		free (ptr);
-		// printf ("<%s>\n", arr[row]);
 		add = add->next;
 		row++;
 	}
@@ -68,10 +65,8 @@ void	ft_free_matrix_contnt(char **arr)
 	row = 0;
 	while (arr[row])
 	{
-		free (arr[row]);
 		row++;
 	}
-	free (arr);
 }
 
 void	print_2d(char **arr)

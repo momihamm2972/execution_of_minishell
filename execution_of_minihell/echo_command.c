@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   echo_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:04:15 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 17:47:45 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/30 23:57:00 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "minishell.h"
 
 int	option(char *str)
 {
@@ -43,8 +43,6 @@ int	delete_line(char **matrix, int row)
 					return (-1);
 				row++;
 			}
-			// if (!matrix[row])
-			// 	return (-1);
 		}
 		row++;
 	}

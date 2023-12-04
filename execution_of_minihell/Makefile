@@ -3,56 +3,60 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+         #
+#    By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/30 03:15:02 by momihamm          #+#    #+#              #
-#    Updated: 2023/11/30 08:05:03 by momihamm         ###   ########.fr        #
+#    Created: 2023/10/25 20:42:57 by azgaoua           #+#    #+#              #
+#    Updated: 2023/12/02 00:17:18 by azgaoua          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minihell
+NAME = minishell
+
+OBJS = minishell.o ft_lst_tools.o \
+		echo_command.o cd_cmmand1.o cd_command.o \
+		env_command.o env_command1.o ft_linked_list.o tools.o pwd_command.o \
+		export_command.o export_command1.o export_command2.o export_command3.o \
+		export_command4.o unset.o unset1.o find_the_path.o execve.o  \
+		lexer.o ft_list_token.o syntax_error.o \
+		parcer2.o join_and_split.o pipa.o ft_split.o ft_strdup.o ft_substr.o \
+		r_out_file.o r_in_file.o r_heredoc.o parcer.o ft_garbege_clctr.o \
+		pip_and_redirection.o syntax_error1.o signal.o pip_and_red2.o \
+		find_the_path1.o minishell1.o exit_command.o builting_error.o
+
+FILES = minishell.c ft_lst_tools.c \
+		echo_command.c cd_cmmand1.c cd_command.c \
+		env_command.c env_command1.c ft_linked_list.c tools.c pwd_command.c \
+		export_command.c export_command1.c export_command2.c export_command3.c \
+		export_command4.c unset.c unset1.c find_the_path.c execve.c \
+		lexer.c ft_list_token.c syntax_error.c \
+		parcer2.c join_and_split.c pipa.c ft_split.c ft_strdup.c ft_substr.c \
+		r_out_file.c r_in_file.c r_heredoc.c parcer.c ft_garbege_clctr.c \
+		pip_and_redirection.c syntax_error1.c signal.c pip_and_red2.c \
+		find_the_path1.c minishell1.c exit_command.c builting_error.c
+
 CC = cc
-FLAGS = -Wall -Werror -Wextra# -g -fsanitize=address
-FILES = mini_excu.c\
-		pwd_command.c\
-		cd_command.c\
-		cd_cmmand1.c\
-		builtins.c\
-		tools.c\
-		tools0.c\
-		tools1.c\
-		echo_command.c\
-		env_command.c\
-		env_command1.c\
-		ft_linked_list.c\
-		export_command.c\
-		export_command1.c\
-		export_command2.c\
-		export_command3.c\
-		export_command4.c\
-		unset.c\
-		unset1.c\
-		split.c\
-		pipex.c\
-		execve.c\
-		exit_command.c\
-		find_the_path.c\
-		redirection.c
 
-OBJ = $(FILES:.c=.o)
+RM = rm -rf
 
-all : $(NAME)
+FLGS = -Wall -Wextra -Werror
 
-%.o : %.c mini_excu.h
-		$(CC) $(FLAGS) -c $<
+all :  $(NAME)
 
-$(NAME) : $(OBJ)
-	$(CC) $(FILES) $(FLAGS) -o $(NAME)
+%.o: %.c minishell.h ./libft/*.c ./libft/libft.h
+	@$(CC) $(FLGS) -I $(shell brew --prefix readline)/include -c $< -o $@
 
-clean :
-		@rm -f $(OBJ)
+$(NAME) :  $(OBJS) $(FILES)
+	@echo "------>making the Minishell<------"
+	@cd libft && make && make clean
+	@$(CC) $(FLGS) $(OBJS) libft/libft.a -o $(NAME) -lreadline -L$(shell brew --prefix readline)/lib
+	@echo "--------->Minishell Done<---------"
 
-fclean : clean
-		@rm -f $(NAME)
+clean:
+	@echo " clean all the *.o FILES"
+	@$(RM) $(OBJS)
 
-re : fclean all 
+fclean:  clean
+	@echo " clean --> $(NAME)"
+	@$(RM) $(NAME) libft/libft.a
+
+re: fclean all

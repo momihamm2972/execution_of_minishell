@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   export_command2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:55 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/20 21:43:00 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/12/01 06:45:06 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "minishell.h"
 
 t_node	*take_key_vlu(char *str)
 {
 	t_node	*new;
 
-	new = ft_lstnew (str);
+	new = ft_lstnew_k (str);
 	return (new);
 }
 
@@ -45,6 +45,7 @@ void	error_export(char *key, char *val)
 		printf("=%s': not a valid identifier\n", val);
 	else
 		printf ("': not a valid identifier\n");
+	ft_exit_status (1);
 }
 
 int	key_error(t_node *test)

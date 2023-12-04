@@ -3,55 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd_command.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 11:55:19 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 23:46:25 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/12/02 00:14:03 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
-
-// t_node	*get_node(t_node **list, char *str)
-// {
-// 	t_node	*ptr;
-
-// 	ptr = (*list);
-// 	while (ptr)
-// 	{
-// 		if (ft_strcmp (ptr->key, str) == 0)
-// 			return (ptr);
-// 		ptr = ptr->next;
-// 	}
-// 	return (NULL);
-// }
-
-// int	arg_path(char *str)
-// {
-// 	if (str[0] != '-' && str[0] != '~')
-// 		return (0);
-// 	else if (str[0] == '-')
-// 		return (1);
-// 	return (-1);
-// }
-
-// void	print_oldpwd(t_node **my_env)
-// {
-// 	t_node	*ptr;
-
-// 	if (!my_env || !(*my_env))
-// 		return ;
-// 	ptr = (*my_env);
-// 	while (ptr)
-// 	{
-// 		if (ptr && ft_strcmp (ptr->key, "OLDPWD") == 0)
-// 		{
-// 			printf ("%s\n", ptr->value_of_the_key);
-// 			return ;
-// 		}
-// 		ptr = ptr->next;
-// 	}
-// }
+#include "minishell.h"
 
 void	update_env(t_node **my_env)
 {
@@ -60,17 +19,13 @@ void	update_env(t_node **my_env)
 	char	*ptr;
 	char	*pwd;
 
-	printf ("AAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
 	old = get_node (my_env, "OLDPWD");
 	new = get_node (my_env, "PWD");
 	ptr = old->value_of_the_key;
 	old->value_of_the_key = new->value_of_the_key;
-	free (ptr);
-	// pwd = getcwd (NULL, 0);
-	// free (new->value_of_the_key);
-	pwd = ft_strdup (getcwd (NULL, 0));
+	pwd = getcwd (NULL, 0);
+	ft_lstadd_back_clctr(ft_collector(), ft_lstnew_clctr(pwd));
 	new->value_of_the_key = pwd;
-	// free (ptr);
 }
 
 char	*go_home(t_node **my_env)
@@ -81,6 +36,7 @@ char	*go_home(t_node **my_env)
 	if (!home)
 	{
 		printf (" cd: HOME not set\n");
+		ft_exit_status(1);
 		return (NULL);
 	}
 	else
@@ -107,37 +63,20 @@ void	cd_command(t_node **env, char **arg)
 {
 	if (!arg || !arg[0])
 	{
-		// printf ("GO HOME\n");
 		if ((home (env, arg[0]) == 0))
 			return ;
 	}
-	// if ((home (env), arg[0]) == 0)
-	// 	return ;
-	if (arg_path (arg[0]) == 0)
+	else if (arg_path (arg[0]) == 0)
 	{
 		if (chdir (arg[0]) == 0)
 		{
-			printf ("+++++|+|+kmi\n");
-			// print_export (env); 
 			update_env (env);
-			// printf ("!!!!!!!!!!!!!***************!!!!!!!!!!!!!!!!!**************!!!!!!!!!!!*****************\n");
-			// print_export (env); 
 			return ;
 		}
 		else
-			printf (" cd: %s: No such file or directory\n", arg[0]);
+		{
+			printf ("minishell-1$: cd: %s: No such file or directory\n", arg[0]);
+			ft_exit_status(1);
+		}
 	}
-	// else if (arg_path (arg[0]) == 1)
-	// {
-	// 	printf ("!!!!!!!!!!!!!***************!!!!!!!!!!!!!!!!!**************!!!!!!!!!!!*****************\n");
-	// 	if (arg[0][1] == '\0')
-	// 	{
-	// 		if ((get_node (env), "OLDPWD") == NULL)
-	// 		{
-	// 			printf (" cd: OLDPWD not set\n");
-	// 			return ;
-	// 		}
-	// 		print_oldpwd(env);
-	// 	}
-	// }
 }

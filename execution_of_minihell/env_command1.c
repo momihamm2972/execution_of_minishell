@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_command1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/19 17:20:54 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 17:23:07 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/19 18:02:00 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "minishell.h"
 
 int	ft_len(char *str, char c)
 {

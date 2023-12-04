@@ -6,16 +6,18 @@
 /*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 15:51:52 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/20 21:42:54 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/21 00:00:09 by momihamm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "minishell.h"
 
 void	print_export(t_node **list)
 {
 	t_node	*ptr;
 
+	if (!list || !(*list))
+		return ;
 	ptr = (*list);
 	while (ptr)
 	{

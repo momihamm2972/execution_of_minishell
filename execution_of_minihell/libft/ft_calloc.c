@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools1.c                                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 17:23:48 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 17:24:20 by momihamm         ###   ########.fr       */
+/*   Created: 2022/10/21 03:58:48 by azgaoua           #+#    #+#             */
+/*   Updated: 2023/11/30 13:34:09 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "../minishell.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*ptr;
-	char	*str;
-	size_t	indx;
+	void	*i;
 
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	str = (char *)ptr;
-	indx = 0;
-	while (indx < (count * size))
-		str[indx++] = 0;
-	return (ptr);
+	i = malloc(count * size);
+	if (i)
+	{
+		ft_lstadd_back_clctr(ft_collector(), ft_lstnew_clctr(i));
+		ft_bzero(i, count * size);
+		return (i);
+	}
+	return (0);
 }

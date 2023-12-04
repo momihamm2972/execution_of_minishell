@@ -3,35 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 23:39:16 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 17:25:12 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/12/02 00:12:12 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
-
-void	*ft_memmove(void *to, void *from, size_t byte)
-{
-	char	*dst;
-	char	*src;
-
-	if (!to && !from)
-		return (NULL);
-	dst = (char *) to;
-	src = (char *) from;
-	if (dst < src)
-		ft_memcpy(dst, src, byte);
-	else
-	{
-		while (byte--)
-		{
-			dst[byte] = src[byte];
-		}
-	}
-	return (dst);
-}
+#include "minishell.h"
 
 int	is_word(char *str)
 {
@@ -40,38 +19,41 @@ int	is_word(char *str)
 	indx = 0;
 	while (str[indx])
 	{
-		if (ft_isalpha (str[indx]) == 1)
+		if (str[indx] == '-' && indx == 0)
+			indx++;
+		if (ft_isdigit(str[indx]) == 0)
 			return (1);
 		indx++;
 	}
 	return (0);
 }
 
-void	exit_status(size_t num)
+static void	exit_status(size_t num)
 {
 	if (num >= 0 && num <= 256)
 	{
 		printf ("exit\n");
-		// status = num;
+		ft_exit_status (num);
 	}
 	if (num > 256)
 	{
 		printf ("exit\n");
-		// status = num % 256;
+		ft_exit_status (num % 256);
 	}
+	exit (ft_exit_status(-1));
 }
 
-int	num_arg_of_exit(char *str)
+static int	num_arg_of_exit(char *str)
 {
 	long long	arg;
 
 	arg = ft_atoi (str);
-	if (arg == -1)
+	if (arg < 0 || arg > INT_MAX)
 	{
 		printf (" exit: %s: numeric argument required\n", str);
-		// status = 255;
+		ft_exit_status (arg);
+		exit (arg);
 		return (1);
-		// exit (0);
 	}
 	exit_status (arg);
 	return (0);
@@ -83,21 +65,19 @@ void	ft_exit(char **matrix)
 
 	if (!matrix || !matrix[0])
 	{
-		// status = 0;
+		ft_exit_status (0);
 		printf ("exit\n");
-		// exit(0);
-		return ;
+		exit(0);
 	}
 	row = -1;
 	while (matrix[++row])
 	{
 		if (is_word (matrix[row]) == 1)
 		{
-			printf ("exit\n");
+			printf ("excit\n");
 			printf (" exit: %s: numeric argument required\n", matrix [row]);
-			// status = 255;
-			return ;
-			// exit (0);
+			ft_exit_status (ft_atoi (matrix[row]));
+			exit (ft_atoi (matrix[row]));
 		}
 		else
 			num_arg_of_exit (matrix[row]);

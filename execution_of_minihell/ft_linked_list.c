@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_linked_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: momihamm <momihamm@student.42.fr>          +#+  +:+       +#+        */
+/*   By: azgaoua <azgaoua@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:45:30 by momihamm          #+#    #+#             */
-/*   Updated: 2023/11/19 16:14:42 by momihamm         ###   ########.fr       */
+/*   Updated: 2023/11/30 13:33:24 by azgaoua          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mini_excu.h"
+#include "minishell.h"
 
-t_node	*ft_lstnew(char *env_val)
+t_node	*ft_lstnew_k(char *env_val)
 {
 	t_node	*head;
 
 	head = malloc (sizeof (t_node));
+	if (!head)
+		return (NULL);
+	ft_lstadd_back_clctr(ft_collector(), ft_lstnew_clctr(head));
 	head->key = NULL;
 	head->value_of_the_key = NULL;
 	head->key = ft_frontcpy (head->key, env_val, '=');
@@ -27,13 +30,13 @@ t_node	*ft_lstnew(char *env_val)
 	return (head);
 }
 
-void	ft_lstadd_front(t_node **lst, t_node *new)
+void	ft_lstadd_front_k(t_node **lst, t_node *new)
 {
 	new->next = (*lst);
 	(*lst) = new;
 }
 
-int	ft_lstsize(t_node *lst)
+int	ft_lstsize_k(t_node *lst)
 {
 	t_node	*ptr;
 	int		i;
@@ -48,7 +51,7 @@ int	ft_lstsize(t_node *lst)
 	return (i);
 }
 
-t_node	*ft_lstlast(t_node **lst)
+t_node	*ft_lstlast_k(t_node **lst)
 {
 	t_node	*ptr;
 
@@ -66,7 +69,7 @@ t_node	*ft_lstlast(t_node **lst)
 	return (NULL);
 }
 
-void	ft_lstadd_back(t_node **lst, t_node *new)
+void	ft_lstadd_back_k(t_node **lst, t_node *new)
 {
 	t_node	*the_last;
 
@@ -75,6 +78,6 @@ void	ft_lstadd_back(t_node **lst, t_node *new)
 		(*lst) = new;
 		return ;
 	}
-	the_last = ft_lstlast(lst);
+	the_last = ft_lstlast_k(lst);
 	the_last->next = new;
 }
